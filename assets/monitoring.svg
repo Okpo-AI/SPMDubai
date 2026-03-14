@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" fill="none">
+  <defs>
+    <linearGradient id="gDonut1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#667eea"/><stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="gDonut2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4ecdc4"/><stop offset="100%" stop-color="#81e6d9"/>
+    </linearGradient>
+    <linearGradient id="gDonut3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f687b3"/><stop offset="100%" stop-color="#fbb6ce"/>
+    </linearGradient>
+    <linearGradient id="gDonut4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f6ad55"/><stop offset="100%" stop-color="#fbd38d"/>
+    </linearGradient>
+    <linearGradient id="gMBar1" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#667eea"/><stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="gMBar2" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#4ecdc4"/><stop offset="100%" stop-color="#81e6d9"/>
+    </linearGradient>
+    <linearGradient id="gMBar3" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#f687b3"/><stop offset="100%" stop-color="#fbb6ce"/>
+    </linearGradient>
+    <linearGradient id="areaR" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4ecdc4" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#4ecdc4" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="neumOutR" x="-8%" y="-8%" width="116%" height="120%">
+      <feDropShadow dx="4" dy="4" stdDeviation="8" flood-color="#b8bec7" flood-opacity="0.45"/>
+      <feDropShadow dx="-3" dy="-3" stdDeviation="6" flood-color="#ffffff" flood-opacity="0.8"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="280" rx="20" fill="#e8ecf1"/>
+  <rect x="16" y="12" width="368" height="256" rx="20" fill="#ffffff" filter="url(#neumOutR)"/>
+
+  <!-- Title -->
+  <text x="36" y="42" font-size="14" fill="#2d3748" font-family="system-ui" font-weight="700">QA Monitoring</text>
+  <text x="36" y="58" font-size="10" fill="#a0aec0" font-family="system-ui">Real-time compliance tracking</text>
+
+  <!-- QA Score donut (left) -->
+  <circle cx="98" cy="118" r="40" fill="none" stroke="#edf0f5" stroke-width="8"/>
+  <circle cx="98" cy="118" r="40" fill="none" stroke="url(#gDonut1)" stroke-width="8" stroke-dasharray="63 251" stroke-linecap="round" transform="rotate(-90 98 118)"/>
+  <circle cx="98" cy="118" r="40" fill="none" stroke="url(#gDonut2)" stroke-width="8" stroke-dasharray="63 251" stroke-linecap="round" transform="rotate(0 98 118)"/>
+  <circle cx="98" cy="118" r="40" fill="none" stroke="url(#gDonut3)" stroke-width="8" stroke-dasharray="63 251" stroke-linecap="round" transform="rotate(90 98 118)"/>
+  <circle cx="98" cy="118" r="40" fill="none" stroke="url(#gDonut4)" stroke-width="8" stroke-dasharray="63 251" stroke-linecap="round" transform="rotate(180 98 118)"/>
+  <text x="98" y="113" text-anchor="middle" font-size="8" fill="#a0aec0" font-family="system-ui">QA Score</text>
+  <text x="98" y="132" text-anchor="middle" font-size="22" fill="#2d3748" font-family="system-ui" font-weight="800">100%</text>
+
+  <!-- Donut legend -->
+  <circle cx="46" cy="174" r="4" fill="url(#gDonut1)"/>
+  <text x="56" y="178" font-size="8" fill="#718096" font-family="system-ui">Compliance</text>
+  <circle cx="120" cy="174" r="4" fill="url(#gDonut2)"/>
+  <text x="130" y="178" font-size="8" fill="#718096" font-family="system-ui">Quality</text>
+
+  <!-- Right side: 3 Value cards with gradient bars -->
+  <rect x="200" y="68" width="160" height="44" rx="10" fill="#ffffff"/>
+  <rect x="212" y="78" width="5" height="24" rx="2.5" fill="url(#gMBar1)"/>
+  <text x="226" y="86" font-size="8" fill="#a0aec0" font-family="system-ui">Contacted</text>
+  <text x="226" y="100" font-size="15" fill="#2d3748" font-family="system-ui" font-weight="800">8,254</text>
+  <text x="340" y="94" text-anchor="end" font-size="9" fill="#38a169" font-family="system-ui" font-weight="600">+15%</text>
+
+  <rect x="200" y="120" width="160" height="44" rx="10" fill="#ffffff"/>
+  <rect x="212" y="130" width="5" height="24" rx="2.5" fill="url(#gMBar2)"/>
+  <text x="226" y="138" font-size="8" fill="#a0aec0" font-family="system-ui">Promise to Pay</text>
+  <text x="226" y="152" font-size="15" fill="#2d3748" font-family="system-ui" font-weight="800">3,891</text>
+  <text x="340" y="146" text-anchor="end" font-size="9" fill="#38a169" font-family="system-ui" font-weight="600">+8%</text>
+
+  <rect x="200" y="172" width="160" height="44" rx="10" fill="#ffffff"/>
+  <rect x="212" y="182" width="5" height="24" rx="2.5" fill="url(#gMBar3)"/>
+  <text x="226" y="190" font-size="8" fill="#a0aec0" font-family="system-ui">Collected</text>
+  <text x="226" y="204" font-size="15" fill="#2d3748" font-family="system-ui" font-weight="800">5,247</text>
+  <text x="340" y="198" text-anchor="end" font-size="9" fill="#38a169" font-family="system-ui" font-weight="600">+12%</text>
+
+  <!-- Bottom: Agent Performance sparkline -->
+  <rect x="36" y="192" width="156" height="68" rx="12" fill="#ffffff"/>
+  <text x="52" y="210" font-size="10" fill="#2d3748" font-family="system-ui" font-weight="600">Agent Performance</text>
+  <text x="52" y="224" font-size="16" fill="#2d3748" font-family="system-ui" font-weight="800">98.7%</text>
+  <text x="110" y="224" font-size="9" fill="#38a169" font-family="system-ui" font-weight="600">+2.1%</text>
+
+  <!-- Mini area chart -->
+  <polygon points="52,250 66,248 80,246 94,250 108,244 122,240 136,244 150,238 164,234 178,230 178,250" fill="url(#areaR)"/>
+  <polyline points="52,250 66,248 80,246 94,250 108,244 122,240 136,244 150,238 164,234 178,230" stroke="url(#gDonut2)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="178" cy="230" r="2.5" fill="#4ecdc4"/>
+</svg>
