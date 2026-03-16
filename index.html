@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
 
@@ -235,15 +235,27 @@
   </section>
 
   <!-- ==================== COLLECTIONS IQ ==================== -->
-  <section class="collections-section">
+  <section class="collections-section ciq-ar-scene" id="ciq-scene">
     <div class="collections-inner">
       <div class="section-heading">
         <h2>Collections IQ</h2>
       </div>
-      <p class="section-subtitle">Data-driven recovery intelligence powered by regional expertise</p>
+      <p class="section-subtitle">Data-driven recovery intelligence — transforming 5.8M+ daily processed accounts into actionable outcomes</p>
 
       <!-- Dashboard Panel -->
-      <div class="ciq-panel">
+      <div class="ciq-panel ciq-ar-panel">
+
+        <!-- AR Grid Overlay -->
+        <div class="ciq-ar-grid" aria-hidden="true"></div>
+        <!-- Floating AR particles -->
+        <div class="ciq-ar-particles" aria-hidden="true">
+          <span class="ciq-particle" style="--px:15%;--py:25%;--delay:0s"></span>
+          <span class="ciq-particle" style="--px:80%;--py:40%;--delay:1.2s"></span>
+          <span class="ciq-particle" style="--px:45%;--py:70%;--delay:0.6s"></span>
+          <span class="ciq-particle" style="--px:70%;--py:15%;--delay:2s"></span>
+          <span class="ciq-particle" style="--px:25%;--py:85%;--delay:1.8s"></span>
+          <span class="ciq-particle" style="--px:90%;--py:65%;--delay:0.3s"></span>
+        </div>
 
         <!-- Dashboard Header -->
         <div class="ciq-panel-header">
@@ -253,59 +265,74 @@
           </div>
           <div class="ciq-panel-stats">
             <div class="ciq-panel-stat">
+              <span class="ciq-panel-stat-val">5.8M+</span>
+              <span class="ciq-panel-stat-label">Accounts Processed Daily</span>
+            </div>
+            <div class="ciq-panel-stat">
+              <span class="ciq-panel-stat-val">$1.1M+</span>
+              <span class="ciq-panel-stat-label">Monthly Handled Value</span>
+            </div>
+            <div class="ciq-panel-stat">
               <span class="ciq-panel-stat-val">3,000+</span>
-              <span class="ciq-panel-stat-label">Active Accounts</span>
-            </div>
-            <div class="ciq-panel-stat">
-              <span class="ciq-panel-stat-val">85%</span>
-              <span class="ciq-panel-stat-label">Recovery Rate</span>
-            </div>
-            <div class="ciq-panel-stat">
-              <span class="ciq-panel-stat-val">98.7%</span>
-              <span class="ciq-panel-stat-label">Compliance</span>
+              <span class="ciq-panel-stat-label">Active Agents</span>
             </div>
           </div>
         </div>
 
-        <!-- Row 1: Donut + Line Chart + Bar Chart -->
+        <!-- Period Selector -->
+        <div class="ciq-period-selector">
+          <button class="ciq-period-btn">Daily</button>
+          <button class="ciq-period-btn ciq-period-active">Weekly</button>
+          <button class="ciq-period-btn">Monthly</button>
+          <button class="ciq-period-btn">Q1 2025</button>
+        </div>
+
+        <!-- Row 1: Compliance Donut + Collection Efficiency + Daily Ops -->
         <div class="ciq-row ciq-row-3">
 
-          <!-- Compliance Donut -->
-          <div class="ciq-card">
+          <!-- QA Compliance Donut -->
+          <div class="ciq-card ciq-ar-card" data-ar-depth="1">
             <div class="ciq-card-top">
-              <h4>Compliance Rate</h4>
+              <h4>QA Compliance</h4>
               <span class="ciq-dot ciq-dot-active"></span>
             </div>
             <div class="ciq-donut-area">
               <svg class="ciq-donut" viewBox="0 0 120 120">
-                <circle cx="60" cy="60" r="50" fill="none" stroke="#edf2f7" stroke-width="8"/>
-                <circle cx="60" cy="60" r="50" fill="none" stroke="var(--navy)" stroke-width="8"
+                <defs>
+                  <linearGradient id="donutGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="var(--navy)"/>
+                    <stop offset="60%" stop-color="#2563eb"/>
+                    <stop offset="100%" stop-color="var(--gold)"/>
+                  </linearGradient>
+                </defs>
+                <circle cx="60" cy="60" r="50" fill="none" stroke="#edf2f7" stroke-width="10"/>
+                <circle cx="60" cy="60" r="50" fill="none" stroke="url(#donutGrad)" stroke-width="10"
                   stroke-dasharray="314" stroke-dashoffset="4" stroke-linecap="round" transform="rotate(-90 60 60)"/>
               </svg>
-              <div class="ciq-donut-val">98.7%</div>
+              <div class="ciq-donut-val">100%</div>
             </div>
             <div class="ciq-donut-legend">
-              <span><i class="ciq-legend-dot" style="background:var(--navy)"></i> QA Monitored</span>
-              <span><i class="ciq-legend-dot" style="background:#edf2f7"></i> Pending</span>
+              <span><i class="ciq-legend-dot" style="background:var(--navy)"></i> AI Monitored</span>
+              <span><i class="ciq-legend-dot" style="background:#edf2f7"></i> Manual Review</span>
             </div>
           </div>
 
-          <!-- Collections Trend Line -->
-          <div class="ciq-card">
+          <!-- Collection Efficiency Trend -->
+          <div class="ciq-card ciq-ar-card" data-ar-depth="2">
             <div class="ciq-card-top">
-              <h4>Collections Trend</h4>
-              <span class="ciq-tag-sm">+18%</span>
+              <h4>Collection Efficiency</h4>
+              <span class="ciq-tag-sm">Highest in Industry</span>
             </div>
             <div class="ciq-line-chart">
               <div class="ciq-line-grid">
-                <span>5K</span><span>4K</span><span>3K</span><span>2K</span><span>1K</span>
+                <span>100%</span><span>80%</span><span>60%</span><span>40%</span><span>20%</span>
               </div>
               <svg class="ciq-line-svg" viewBox="0 0 240 80" preserveAspectRatio="none">
                 <polyline fill="url(#lineGrad)" stroke="none"
-                  points="0,80 0,64 34,56 68,50 102,42 136,34 170,24 204,16 240,10 240,80"/>
+                  points="0,80 0,58 34,52 68,44 102,38 136,30 170,22 204,14 240,8 240,80"/>
                 <polyline fill="none" stroke="var(--navy)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                  points="0,64 34,56 68,50 102,42 136,34 170,24 204,16 240,10"/>
-                <circle cx="204" cy="16" r="4" fill="var(--gold)" stroke="white" stroke-width="2"/>
+                  points="0,58 34,52 68,44 102,38 136,30 170,22 204,14 240,8"/>
+                <circle cx="240" cy="8" r="4" fill="var(--gold)" stroke="white" stroke-width="2"/>
                 <defs><linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stop-color="var(--navy)" stop-opacity="0.08"/>
                   <stop offset="100%" stop-color="var(--navy)" stop-opacity="0"/>
@@ -313,114 +340,118 @@
               </svg>
             </div>
             <div class="ciq-line-labels">
-              <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span>
+              <span>0–30</span><span>30–60</span><span>60–90</span><span>90–120</span><span>120–150</span><span>150–180</span><span>180+</span>
             </div>
+            <p class="ciq-chart-note">Days Past Due (DPD) — 90–120 DPD highest rate</p>
           </div>
 
-          <!-- Channel Performance Bars -->
-          <div class="ciq-card">
+          <!-- Daily Operational Vitals -->
+          <div class="ciq-card ciq-ar-card" data-ar-depth="3">
             <div class="ciq-card-top">
-              <h4>Channel Reach</h4>
-              <span class="ciq-tag-sm">4 channels</span>
+              <h4>Daily Operations</h4>
+              <span class="ciq-tag-sm">Live</span>
             </div>
             <div class="ciq-vbars">
               <div class="ciq-vbar-col">
+                <div class="ciq-vbar" style="--h:92%"></div>
+                <span>Accounts</span>
+              </div>
+              <div class="ciq-vbar-col">
+                <div class="ciq-vbar ciq-vbar-gold" style="--h:78%"></div>
+                <span>Field Visits</span>
+              </div>
+              <div class="ciq-vbar-col">
+                <div class="ciq-vbar ciq-vbar-light" style="--h:55%"></div>
+                <span>Legal Cases</span>
+              </div>
+              <div class="ciq-vbar-col">
                 <div class="ciq-vbar" style="--h:85%"></div>
-                <span>Voice</span>
+                <span>Calls</span>
               </div>
-              <div class="ciq-vbar-col">
-                <div class="ciq-vbar ciq-vbar-gold" style="--h:91%"></div>
-                <span>WhatsApp</span>
-              </div>
-              <div class="ciq-vbar-col">
-                <div class="ciq-vbar ciq-vbar-light" style="--h:72%"></div>
-                <span>SMS</span>
-              </div>
-              <div class="ciq-vbar-col">
-                <div class="ciq-vbar" style="--h:58%"></div>
-                <span>Email</span>
-              </div>
+            </div>
+            <div class="ciq-vitals-legend">
+              <span><strong>5.8M</strong> accounts</span>
+              <span><strong>5,000+</strong> visits</span>
+              <span><strong>470</strong> legal</span>
             </div>
           </div>
 
         </div>
 
-        <!-- Row 2: Table + Schedule -->
+        <!-- Row 2: Regional Hub Table + Intelligence Features -->
         <div class="ciq-row ciq-row-2">
 
-          <!-- Recovery Activity Table -->
-          <div class="ciq-card ciq-card-lg">
+          <!-- Regional Hub Performance -->
+          <div class="ciq-card ciq-card-lg ciq-ar-card" data-ar-depth="1.5">
             <div class="ciq-card-top">
-              <h4>Recovery Activity</h4>
-              <a href="#" class="ciq-see-all">See All</a>
+              <h4>Regional Hubs</h4>
+              <span class="ciq-tag-sm">3 Regions</span>
             </div>
             <table class="ciq-table">
               <thead>
                 <tr>
-                  <th>Channel</th>
-                  <th>Reach Rate</th>
-                  <th>Volume</th>
+                  <th>Hub</th>
+                  <th>Specialty</th>
+                  <th>Coverage</th>
                   <th>Status</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><span class="ciq-table-icon">📞</span> Voice Calls</td>
-                  <td>85%</td>
-                  <td>2,450</td>
+                  <td><span class="ciq-table-icon">🇦🇪</span> UAE GCC Hub</td>
+                  <td>Arabic, English, Hindi</td>
+                  <td>Middle East</td>
                   <td><span class="ciq-status ciq-status-active">Active</span></td>
                 </tr>
                 <tr>
-                  <td><span class="ciq-table-icon">💬</span> WhatsApp</td>
-                  <td>91%</td>
-                  <td>1,340</td>
+                  <td><span class="ciq-table-icon">🇵🇭</span> Philippines</td>
+                  <td>18 branches, local dialects</td>
+                  <td>Nationwide</td>
                   <td><span class="ciq-status ciq-status-active">Active</span></td>
                 </tr>
                 <tr>
-                  <td><span class="ciq-table-icon">✉️</span> SMS</td>
-                  <td>72%</td>
-                  <td>1,820</td>
+                  <td><span class="ciq-table-icon">🇸🇬</span> Singapore</td>
+                  <td>APAC coordination</td>
+                  <td>Southeast Asia</td>
                   <td><span class="ciq-status ciq-status-active">Active</span></td>
-                </tr>
-                <tr>
-                  <td><span class="ciq-table-icon">📧</span> Email</td>
-                  <td>58%</td>
-                  <td>960</td>
-                  <td><span class="ciq-status">Monitoring</span></td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <!-- PTP Summary -->
-          <div class="ciq-card">
+          <!-- Intelligence Features -->
+          <div class="ciq-card ciq-ar-card" data-ar-depth="2.5">
             <div class="ciq-card-top">
-              <h4>Promise-to-Pay</h4>
+              <h4>Intelligence Engine</h4>
             </div>
             <div class="ciq-ptp-list">
               <div class="ciq-ptp-row">
                 <div class="ciq-ptp-info">
-                  <span class="ciq-ptp-label">Debtors Contacted</span>
+                  <span class="ciq-ptp-label">Predictive Pathing</span>
+                  <span class="ciq-ptp-desc">ML-based propensity-to-pay scoring</span>
                 </div>
-                <span class="ciq-ptp-val">8,254</span>
+                <span class="ciq-dot ciq-dot-active"></span>
               </div>
               <div class="ciq-ptp-row">
                 <div class="ciq-ptp-info">
-                  <span class="ciq-ptp-label">PTP Secured</span>
+                  <span class="ciq-ptp-label">Compliance-First Engine</span>
+                  <span class="ciq-ptp-desc">100% QA AI monitored interactions</span>
                 </div>
-                <span class="ciq-ptp-val ciq-ptp-gold">3,891</span>
+                <span class="ciq-dot ciq-dot-active"></span>
               </div>
               <div class="ciq-ptp-row">
                 <div class="ciq-ptp-info">
-                  <span class="ciq-ptp-label">Successful Collections</span>
+                  <span class="ciq-ptp-label">Credit Verificator App</span>
+                  <span class="ciq-ptp-desc">Proprietary field workflow mobile tool</span>
                 </div>
-                <span class="ciq-ptp-val ciq-ptp-navy">5,247</span>
+                <span class="ciq-dot ciq-dot-active"></span>
               </div>
               <div class="ciq-ptp-row">
                 <div class="ciq-ptp-info">
-                  <span class="ciq-ptp-label">Conversion Rate</span>
+                  <span class="ciq-ptp-label">Borderless Solutions</span>
+                  <span class="ciq-ptp-desc">Seamless call → field → legal escalation</span>
                 </div>
-                <span class="ciq-ptp-val ciq-ptp-gold">47%</span>
+                <span class="ciq-dot ciq-dot-active"></span>
               </div>
             </div>
           </div>
@@ -430,9 +461,9 @@
       </div>
 
       <div class="collections-cta">
-        <h3>Leverage Our "Collections IQ"</h3>
-        <p>See how our data-driven approach can transform your recovery rates.</p>
-        <button class="btn-primary">Learn More <span>&rarr;</span></button>
+        <h3>Leverage Our Collections IQ</h3>
+        <p>Powered by 5.8M+ daily processed accounts and machine learning — see how our data-driven approach transforms recovery rates across the GCC.</p>
+        <button class="btn-primary">Request a Demo <span>&rarr;</span></button>
       </div>
     </div>
   </section>
@@ -500,70 +531,85 @@
       </div>
       <p class="section-subtitle">Strategically positioned operations across key markets</p>
 
-      <div class="ops-grid">
-        <div class="ops-card ops-card-featured">
-          <div class="ops-flag">🇦🇪</div>
-          <h4>Regional Intelligence Hub</h4>
-          <span class="ops-location">Dubai, UAE</span>
-          <p>Command center coordinating recovery operations across 5+ GCC countries with real-time monitoring.</p>
-          <div class="ops-tags">
-            <span>Strategy</span><span>Compliance</span><span>Oversight</span>
-          </div>
-        </div>
-        <div class="ops-card">
-          <div class="ops-flag">🇵🇭</div>
-          <h4>Operations Center</h4>
-          <span class="ops-location">Manila, Philippines</span>
-          <p>3,000+ trained agents handling multi-channel collection campaigns with 24/7 coverage.</p>
-          <div class="ops-tags">
-            <span>Voice</span><span>Multichannel</span><span>24/7</span>
-          </div>
-        </div>
-        <div class="ops-card">
-          <div class="ops-flag">🇪🇬</div>
-          <h4>Field Operations</h4>
-          <span class="ops-location">Cairo & Alexandria, Egypt</span>
-          <p>8 field officers supporting on-ground recovery and skip tracing across the region.</p>
-          <div class="ops-tags">
-            <span>Field Recovery</span><span>Skip Tracing</span>
-          </div>
-        </div>
-        <div class="ops-card">
-          <div class="ops-flag">🇸🇬</div>
-          <h4>Technology Hub</h4>
-          <span class="ops-location">Singapore</span>
-          <p>Tech team driving Collections IQ platform development and AI innovation.</p>
-          <div class="ops-tags">
-            <span>AI/ML</span><span>Platform</span><span>Analytics</span>
-          </div>
-        </div>
-      </div>
+      <div class="ops-timeline" id="ops-timeline">
+        <!-- SVG curve drawn dynamically by JS -->
+        <svg class="ops-curve" id="ops-curve" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path class="ops-curve-track" stroke-width="2" stroke-linecap="round"/>
+          <path class="ops-curve-fill" stroke-width="3" stroke-linecap="round"/>
+        </svg>
 
+        <!-- Step 1: Philippines – left -->
+        <div class="ops-step ops-step-left">
+          <div class="ops-step-node" id="ops-node-0">
+            <img src="assets/philippineeagle.png" alt="Philippine Eagle">
+          </div>
+          <div class="ops-step-content">
+            <h4>Operations Center</h4>
+            <span class="ops-step-location">Manila, Philippines</span>
+            <p>3,000+ trained agents handling multi-channel collection campaigns with 24/7 coverage.</p>
+            <div class="ops-step-tags"><span>Voice</span><span>Multichannel</span><span>24/7</span></div>
+          </div>
+        </div>
+
+        <!-- Step 2: Singapore – right -->
+        <div class="ops-step ops-step-right">
+          <div class="ops-step-content">
+            <h4>Technology Hub</h4>
+            <span class="ops-step-location">Singapore</span>
+            <p>Tech team driving Collections IQ platform development and AI innovation.</p>
+            <div class="ops-step-tags"><span>AI/ML</span><span>Platform</span><span>Analytics</span></div>
+          </div>
+          <div class="ops-step-node" id="ops-node-1">
+            <img src="assets/merlion.png" alt="Merlion">
+          </div>
+        </div>
+
+        <!-- Step 3: Egypt – left -->
+        <div class="ops-step ops-step-left">
+          <div class="ops-step-node" id="ops-node-2">
+            <img src="assets/sphinxcat.png" alt="Sphinx Cat">
+          </div>
+          <div class="ops-step-content">
+            <h4>Field Operations</h4>
+            <span class="ops-step-location">Cairo &amp; Alexandria, Egypt</span>
+            <p>8 field officers supporting on-ground recovery and skip tracing across the region.</p>
+            <div class="ops-step-tags"><span>Field Recovery</span><span>Skip Tracing</span></div>
+          </div>
+        </div>
+
+        <!-- Step 4: Dubai – right -->
+        <div class="ops-step ops-step-right">
+          <div class="ops-step-content">
+            <h4>Regional Intelligence Hub</h4>
+            <span class="ops-step-location">Dubai, UAE</span>
+            <p>Command center coordinating recovery operations across 5+ GCC countries with real-time monitoring.</p>
+            <div class="ops-step-tags"><span>Strategy</span><span>Compliance</span><span>Oversight</span></div>
+          </div>
+          <div class="ops-step-node" id="ops-node-3">
+            <img src="assets/arabianoryx.png" alt="Arabian Oryx">
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
   <!-- ==================== BOOTS ON THE GROUND ==================== -->
   <section class="boots-section">
     <div class="boots-inner">
-      <div class="section-heading">
-        <h2>Boots on the Ground</h2>
-      </div>
-      <div class="boots-grid">
-        <div class="boots-info">
-          <div class="boots-card">
-            <h4>Egypt Field Coverage</h4>
-            <p>8 dedicated field officers across Cairo &amp; Alexandria providing on-ground debt recovery and skip tracing.</p>
-          </div>
-          <div class="boots-card">
-            <h4>Local Legal Partnerships</h4>
-            <p>Established relationships with regional law firms ensuring compliance with local regulations.</p>
-          </div>
-          <div class="boots-card">
-            <h4>Multi-Lingual Teams</h4>
-            <p>Arabic, Hindi, Filipino, and English-speaking agents connect with debtors in their preferred language.</p>
-          </div>
+      <div class="boots-content">
+        <div class="boots-text">
+          <h2>Boots on the Ground</h2>
+          <p class="boots-lead">8 dedicated field officers across Cairo &amp; Alexandria providing on-ground debt recovery, skip tracing, and local legal partnerships.</p>
+          <ul class="boots-highlights">
+            <li><strong>Egypt Field Coverage</strong> — On-ground recovery and skip tracing across Cairo &amp; Alexandria</li>
+            <li><strong>Local Legal Partnerships</strong> — Regional law firms ensuring compliance with local regulations</li>
+            <li><strong>Multi-Lingual Teams</strong> — Arabic, Hindi, Filipino, and English-speaking agents</li>
+          </ul>
         </div>
-        <div class="boots-image">Field Operations Image</div>
+        <div class="boots-photo">
+          <img src="assets/dubai1.png" alt="Dubai Operations">
+        </div>
       </div>
     </div>
   </section>
@@ -713,6 +759,15 @@
       <button id="card-overlay-close" class="card-overlay-close" aria-label="Close">&times;</button>
       <div id="card-overlay-body"></div>
     </div>
+  </div>
+
+  <!-- Success Toast -->
+  <div class="micro-success-toast" role="status" aria-live="polite">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <circle class="success-check-circle" cx="12" cy="12" r="11" stroke="#48bb78" stroke-width="2"/>
+      <path class="success-check-path" d="M7 12.5l3 3 7-7" stroke="#48bb78" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="success-check-text">Success</span>
   </div>
 
   <script src="script.js"></script>

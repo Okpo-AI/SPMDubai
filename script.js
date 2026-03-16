@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Scroll-triggered animations (re-trigger on scroll up/down)
-  var animateCards = document.querySelectorAll('.ciq-card, .feature-card, .number-card, .ops-card, .ciq-panel');
+  var animateCards = document.querySelectorAll('.ciq-card, .feature-card, .number-card, .ciq-panel');
   if ('IntersectionObserver' in window) {
     var cardTimers = new Map();
     var cardObserver = new IntersectionObserver(function (entries) {
@@ -212,15 +212,292 @@ document.addEventListener('DOMContentLoaded', function () {
     updateLifecycleProgress();
   }
 
-  // Navbar background on scroll
+  // =============================================
+  // Global Operations Hub — Curved Path scroll progress
+  // =============================================
+  var opsTimeline = document.getElementById('ops-timeline');
+  if (opsTimeline) {
+    var opsSvg = document.getElementById('ops-curve');
+    var opsTrack = opsSvg.querySelector('.ops-curve-track');
+    var opsFill = opsSvg.querySelector('.ops-curve-fill');
+    var opsSteps = opsTimeline.querySelectorAll('.ops-step');
+    var opsNodes = opsTimeline.querySelectorAll('.ops-step-node');
+    var opsStepCount = opsSteps.length;
+    var opsTotalLength = 0;
+    var opsBuilt = false;
+
+    // Add SVG gradient definition
+    var defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+    var grad = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+    grad.setAttribute('id', 'ops-grad');
+    grad.setAttribute('x1', '0'); grad.setAttribute('y1', '0');
+    grad.setAttribute('x2', '0'); grad.setAttribute('y2', '1');
+    var stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+    stop1.setAttribute('offset', '0%'); stop1.setAttribute('stop-color', '#b8860b');
+    var stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+    stop2.setAttribute('offset', '100%'); stop2.setAttribute('stop-color', '#63b3ed');
+    grad.appendChild(stop1); grad.appendChild(stop2);
+    defs.appendChild(grad);
+    opsSvg.insertBefore(defs, opsSvg.firstChild);
+
+    function buildOpsCurve() {
+      var timelineRect = opsTimeline.getBoundingClientRect();
+      var points = [];
+      for (var i = 0; i < opsNodes.length; i++) {
+        var nodeRect = opsNodes[i].getBoundingClientRect();
+        points.push({
+          x: nodeRect.left + nodeRect.width / 2 - timelineRect.left,
+          y: nodeRect.top + nodeRect.height / 2 - timelineRect.top
+        });
+      }
+
+      if (points.length < 2) return;
+
+      var w = timelineRect.width;
+      var h = timelineRect.height;
+      opsSvg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+
+      // Build smooth cubic bezier path through node centers
+      var d = 'M ' + points[0].x + ' ' + points[0].y;
+      for (var j = 0; j < points.length - 1; j++) {
+        var cur = points[j];
+        var nxt = points[j + 1];
+        // Control points at 40% and 60% of vertical distance, keeping horizontal position of current/next
+        var cy1 = cur.y + (nxt.y - cur.y) * 0.4;
+        var cy2 = cur.y + (nxt.y - cur.y) * 0.6;
+        d += ' C ' + cur.x + ' ' + cy1 + ', ' + nxt.x + ' ' + cy2 + ', ' + nxt.x + ' ' + nxt.y;
+      }
+
+      opsTrack.setAttribute('d', d);
+      opsFill.setAttribute('d', d);
+
+      opsTotalLength = opsFill.getTotalLength();
+      opsFill.style.strokeDasharray = opsTotalLength;
+      opsFill.style.strokeDashoffset = opsTotalLength;
+      opsBuilt = true;
+    }
+
+    // Build curve after layout settles
+    setTimeout(buildOpsCurve, 100);
+    window.addEventListener('resize', function () {
+      opsBuilt = false;
+      buildOpsCurve();
+      requestAnimationFrame(updateOpsProgress);
+    });
+
+    var opsTicking = false;
+
+    function updateOpsProgress() {
+      var winH = window.innerHeight;
+      var midScreen = winH * 0.5;
+
+      // Per-node activation: trigger when node center crosses middle of screen
+      for (var i = 0; i < opsStepCount; i++) {
+        var nodeRect = opsNodes[i].getBoundingClientRect();
+        var nodeCenter = nodeRect.top + nodeRect.height / 2;
+        if (nodeCenter <= midScreen) {
+          opsSteps[i].classList.add('ops-step-active');
+        } else {
+          opsSteps[i].classList.remove('ops-step-active');
+          opsSteps[i].classList.remove('ops-step-current');
+        }
+      }
+
+      // Line progress: 0 when first node at mid, 1 when last node at mid
+      var lineProgress = 0;
+      if (opsStepCount >= 2) {
+        var firstRect = opsNodes[0].getBoundingClientRect();
+        var lastRect = opsNodes[opsStepCount - 1].getBoundingClientRect();
+        var firstY = firstRect.top + firstRect.height / 2;
+        var lastY = lastRect.top + lastRect.height / 2;
+        var span = lastY - firstY;
+        if (span !== 0) {
+          lineProgress = (midScreen - firstY) / span;
+        }
+        lineProgress = Math.max(0, Math.min(1, lineProgress));
+      }
+
+      if (opsBuilt && opsTotalLength > 0) {
+        opsFill.style.strokeDashoffset = opsTotalLength * (1 - lineProgress);
+      }
+
+      // Mark last active as current
+      var lastActive = -1;
+      for (var j = opsStepCount - 1; j >= 0; j--) {
+        if (opsSteps[j].classList.contains('ops-step-active')) {
+          lastActive = j;
+          break;
+        }
+      }
+      for (var k = 0; k < opsStepCount; k++) {
+        opsSteps[k].classList.toggle('ops-step-current', k === lastActive);
+      }
+
+      opsTicking = false;
+    }
+
+    function onOpsScroll() {
+      if (!opsTicking) {
+        opsTicking = true;
+        requestAnimationFrame(updateOpsProgress);
+      }
+    }
+
+    window.addEventListener('scroll', onOpsScroll, { passive: true });
+    window.addEventListener('resize', function () {
+      requestAnimationFrame(updateOpsProgress);
+    });
+    updateOpsProgress();
+  }
+
+  // Navbar background on scroll + glassmorphic
   var navbar = document.querySelector('.navbar');
   if (navbar) {
     window.addEventListener('scroll', function () {
       if (window.scrollY > 10) {
+        navbar.classList.add('scrolled');
         navbar.style.boxShadow = '0 2px 16px rgba(0,0,0,0.06)';
       } else {
+        navbar.classList.remove('scrolled');
         navbar.style.boxShadow = 'none';
       }
     });
   }
+
+  /* =============================================
+     ANIMATION ENGINE
+     ============================================= */
+
+  // -- Respect reduced-motion --
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // -- Spring Physics Class --
+  function Spring(stiffness, damping) {
+    this.stiffness = stiffness || 120;
+    this.damping = damping || 14;
+    this.x = 0;
+    this.target = 0;
+    this.velocity = 0;
+  }
+  Spring.prototype.update = function (dt) {
+    var force = -this.stiffness * (this.x - this.target);
+    var dampF = -this.damping * this.velocity;
+    this.velocity += (force + dampF) * dt;
+    this.x += this.velocity * dt;
+    return this.x;
+  };
+  Spring.prototype.setTarget = function (t) { this.target = t; };
+
+  // -- Hero Parallax on Mouse --
+  if (!prefersReduced) {
+    var hero = document.querySelector('.hero');
+    if (hero) {
+      var depthEls = hero.querySelectorAll('[data-depth]');
+      if (depthEls.length > 0) {
+        function handleParallax(e) {
+          var cx = window.innerWidth / 2;
+          var cy = window.innerHeight / 2;
+          var mx = (e.clientX - cx) / cx;
+          var my = (e.clientY - cy) / cy;
+          depthEls.forEach(function (el) {
+            var d = parseFloat(el.getAttribute('data-depth')) || 0;
+            var x = mx * d * 20;
+            var y = my * d * 15;
+            el.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
+          });
+        }
+        hero.addEventListener('mousemove', handleParallax);
+      }
+    }
+  }
+
+  // -- CIQ Cards 3D Tilt on Hover --
+  if (!prefersReduced) {
+    var arCards = document.querySelectorAll('.ciq-ar-card');
+    arCards.forEach(function (card) {
+      card.addEventListener('mousemove', function (e) {
+        var rect = card.getBoundingClientRect();
+        var cx = rect.left + rect.width / 2;
+        var cy = rect.top + rect.height / 2;
+        var rx = -(e.clientY - cy) / rect.height * 8;
+        var ry = (e.clientX - cx) / rect.width * 8;
+        card.style.transform = 'perspective(800px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateZ(4px)';
+      });
+      card.addEventListener('mouseleave', function () {
+        card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateZ(0)';
+      });
+    });
+  }
+
+  // -- Section Heading Reveal --
+  var headings = document.querySelectorAll('.section-heading');
+  var subtitles = document.querySelectorAll('.section-subtitle');
+  if (headings.length > 0) {
+    var headingObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          headingObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    headings.forEach(function (h) { headingObs.observe(h); });
+    subtitles.forEach(function (s) { headingObs.observe(s); });
+  }
+
+  // -- CIQ Panel Scroll Reveal --
+  var arPanel = document.querySelector('.ciq-ar-panel');
+  if (arPanel) {
+    var panelObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+          panelObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    panelObs.observe(arPanel);
+  }
+
+  // -- Button Ripple Position --
+  document.querySelectorAll('.btn-primary, .btn-secondary, .btn-get-started').forEach(function (btn) {
+    btn.addEventListener('mousemove', function (e) {
+      var rect = btn.getBoundingClientRect();
+      btn.style.setProperty('--ripple-x', ((e.clientX - rect.left) / rect.width * 100) + '%');
+      btn.style.setProperty('--ripple-y', ((e.clientY - rect.top) / rect.height * 100) + '%');
+    });
+  });
+
+  // -- Period Selector Toggle --
+  var periodBtns = document.querySelectorAll('.ciq-period-btn');
+  periodBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      periodBtns.forEach(function (b) { b.classList.remove('ciq-period-active'); });
+      btn.classList.add('ciq-period-active');
+    });
+  });
+
+  // -- Journey Dimming on CTA Hover --
+  if (!prefersReduced) {
+    var heroEl = document.querySelector('.hero');
+    var heroCtas = heroEl ? heroEl.querySelectorAll('.btn-primary, .btn-get-started') : [];
+    heroCtas.forEach(function (btn) {
+      btn.addEventListener('mouseenter', function () {
+        heroEl.classList.add('journey-dimming');
+      });
+      btn.addEventListener('mouseleave', function () {
+        heroEl.classList.remove('journey-dimming');
+      });
+    });
+  }
+
+  // -- Success Toast Helper --
+  window.showSuccessToast = function (msg) {
+    var toast = document.querySelector('.micro-success-toast');
+    if (!toast) return;
+    var textEl = toast.querySelector('.success-check-text');
+    if (textEl && msg) textEl.textContent = msg;
+    toast.classList.add('visible');
+    setTimeout(function () { toast.classList.remove('visible'); }, 3000);
+  };
 });
