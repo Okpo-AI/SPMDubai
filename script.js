@@ -334,15 +334,20 @@ document.addEventListener('DOMContentLoaded', function () {
         opsSteps[k].classList.toggle('ops-step-current', k === lastActive);
       }
 
-      // Update landmark stack — slide up to stack, slide down to unstack
+      // Direction-aware landmark transitions
+      // Only the current landmark is visible; previous and future are hidden
       for (var m = 0; m < opsLandmarks.length; m++) {
         var stepIdx = parseInt(opsLandmarks[m].getAttribute('data-step'), 10);
-        if (opsSteps[stepIdx] && opsSteps[stepIdx].classList.contains('ops-step-active')) {
-          // Active: slid up into view, fully opaque
+        if (stepIdx === lastActive) {
+          // Current: fully visible
           opsLandmarks[m].style.transform = 'translateY(0)';
           opsLandmarks[m].style.opacity = '1';
+        } else if (stepIdx < lastActive) {
+          // Previous: hidden (already passed — slid up and out)
+          opsLandmarks[m].style.transform = 'translateY(-30%)';
+          opsLandmarks[m].style.opacity = '0';
         } else {
-          // Inactive: slid down out of view
+          // Future: waiting below
           opsLandmarks[m].style.transform = 'translateY(100%)';
           opsLandmarks[m].style.opacity = '0';
         }
@@ -377,6 +382,19 @@ document.addEventListener('DOMContentLoaded', function () {
         navbar.style.boxShadow = 'none';
       }
     });
+  }
+
+  // Boots on the Ground entrance animation
+  var bootsSection = document.querySelector('.boots-section');
+  if (bootsSection && 'IntersectionObserver' in window) {
+    var bootsObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          bootsSection.classList.add('section-visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    bootsObs.observe(bootsSection);
   }
 
   /* =============================================

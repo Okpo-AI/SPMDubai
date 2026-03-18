@@ -536,6 +536,15 @@ img {
   opacity: 1;
 }
 
+.carousel-logo.gold-tint img {
+  filter: brightness(0) saturate(100%) invert(50%) sepia(100%) saturate(600%) hue-rotate(8deg) brightness(0.72) contrast(85%);
+  opacity: 0.85;
+}
+
+.carousel-logo.gold-tint img:hover {
+  opacity: 1;
+}
+
 @keyframes carousel-scroll-left {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -2089,7 +2098,7 @@ img {
    Global Operations Hub — Vertical Timeline
    ======================================== */
 .operations-section {
-  padding: 100px 32px 140px;
+  padding: 100px 32px calc(60vh);
   background: var(--white);
 }
 
@@ -2116,6 +2125,12 @@ img {
   z-index: 1;
 }
 
+.ops-timeline::after {
+  content: '';
+  display: block;
+  height: 40vh;
+}
+
 /* SVG curved path */
 .ops-curve {
   position: absolute;
@@ -2138,18 +2153,29 @@ img {
   transition: stroke-dashoffset 0.15s linear;
 }
 
-/* Each step row */
+/* Each step row — semi-transparent card */
 .ops-step {
   display: flex;
   align-items: center;
   gap: 28px;
   position: relative;
   z-index: 1;
-  padding: 140px 0;
+  padding: 28px 32px;
+  margin: 120px 0;
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.5s ease, transform 0.5s ease;
   overflow: visible;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.ops-step:first-child {
+  margin-top: 200px;
 }
 
 .ops-step.ops-step-active {
@@ -2174,6 +2200,7 @@ img {
   margin-bottom: -100vh;
   margin-left: calc(-50vw + 50%);
   overflow: hidden;
+  background: #ffffff;
 }
 
 .ops-landmark {
@@ -2183,14 +2210,14 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center;
+  object-position: center 25%;
   opacity: 0;
   transform: translateY(100%);
-  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.5s ease, opacity 0.5s ease;
   pointer-events: none;
-  will-change: transform;
-  filter: saturate(0.55);
-  mix-blend-mode: multiply;
+  will-change: transform, opacity;
+  image-rendering: auto;
+  filter: saturate(0.7);
 }
 
 /* Stacking z-index: each landmark layers on top of previous */
@@ -2199,18 +2226,20 @@ img {
 .ops-landmark[data-step="2"] { z-index: 3; }
 .ops-landmark[data-step="3"] { z-index: 4; }
 
-/* Left step: node on left ~30%, content fills right */
+/* Left step: centered card */
 .ops-step-left {
   flex-direction: row;
-  padding-left: 12%;
-  padding-right: 5%;
+  margin-left: 8%;
+  margin-right: auto;
+  max-width: 560px;
 }
 
-/* Right step: node on right ~70%, content fills left */
+/* Right step: centered card */
 .ops-step-right {
   flex-direction: row-reverse;
-  padding-right: 12%;
-  padding-left: 5%;
+  margin-right: 8%;
+  margin-left: auto;
+  max-width: 560px;
 }
 
 .ops-step-left .ops-step-content {
@@ -2233,55 +2262,32 @@ img {
   z-index: 2;
 }
 
-/* Sticker-like border around the symbol */
+/* No white circle — bare symbol */
 .ops-step-node::before {
-  content: '';
-  position: absolute;
-  width: 116px;
-  height: 116px;
-  border-radius: 50%;
-  background: var(--white);
-  z-index: -1;
+  display: none;
 }
 
 .ops-step-node img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: brightness(0.4) saturate(0%) invert(0%) sepia(0%) saturate(100%) hue-rotate(200deg) brightness(0.6)
-          drop-shadow(1px 0 0 white) drop-shadow(-1px 0 0 white)
-          drop-shadow(0 1px 0 white) drop-shadow(0 -1px 0 white)
-          drop-shadow(2px 0 0 white) drop-shadow(-2px 0 0 white)
-          drop-shadow(0 2px 0 white) drop-shadow(0 -2px 0 white);
+  mix-blend-mode: multiply;
+  opacity: 0.5;
   transform: scale(0.85);
-  transition: filter 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-/* Passed steps: dark blue, with white sticker outline */
+/* Passed steps: visible */
 .ops-step.ops-step-active .ops-step-node img {
-  filter: brightness(0%) saturate(100%) invert(15%) sepia(90%) saturate(2000%) hue-rotate(200deg) brightness(0.8)
-          drop-shadow(1px 0 0 white) drop-shadow(-1px 0 0 white)
-          drop-shadow(0 1px 0 white) drop-shadow(0 -1px 0 white)
-          drop-shadow(2px 0 0 white) drop-shadow(-2px 0 0 white)
-          drop-shadow(0 2px 0 white) drop-shadow(0 -2px 0 white);
+  opacity: 0.7;
   transform: scale(1);
 }
 
-/* Current step: gold tint, white sticker outline, no glow */
+/* Current step: fully visible, slightly enlarged */
 .ops-step.ops-step-current .ops-step-node img {
-  filter: brightness(0%) saturate(100%) invert(60%) sepia(90%) saturate(600%) hue-rotate(360deg) brightness(0.85)
-          drop-shadow(1px 0 0 white) drop-shadow(-1px 0 0 white)
-          drop-shadow(0 1px 0 white) drop-shadow(0 -1px 0 white)
-          drop-shadow(2px 0 0 white) drop-shadow(-2px 0 0 white)
-          drop-shadow(0 2px 0 white) drop-shadow(0 -2px 0 white);
+  opacity: 1;
   transform: scale(1.15);
 }
-
-/* Staggered delays for each step's symbol */
-.ops-step:nth-child(2) .ops-step-node img { transition-delay: 0s; }
-.ops-step:nth-child(3) .ops-step-node img { transition-delay: 0.15s; }
-.ops-step:nth-child(4) .ops-step-node img { transition-delay: 0.3s; }
-.ops-step:nth-child(5) .ops-step-node img { transition-delay: 0.45s; }
 
 /* Content block */
 .ops-step-content {
@@ -2291,7 +2297,7 @@ img {
 .ops-step-content h4 {
   font-size: 16px;
   font-weight: 700;
-  color: var(--navy);
+  color: rgba(0, 31, 63, 0.4);
   margin-bottom: 4px;
   transition: color 0.12s ease;
 }
@@ -2307,7 +2313,7 @@ img {
 .ops-step-location {
   display: block;
   font-size: 13px;
-  color: #a0aec0;
+  color: rgba(0, 31, 63, 0.3);
   margin-bottom: 8px;
   font-weight: 500;
   transition: color 0.12s ease;
@@ -2319,7 +2325,7 @@ img {
 
 .ops-step-content p {
   font-size: 13px;
-  color: #a0aec0;
+  color: rgba(0, 31, 63, 0.35);
   line-height: 1.6;
   margin-bottom: 10px;
   transition: color 0.12s ease;
@@ -2370,6 +2376,14 @@ img {
   color: var(--white);
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.boots-section.section-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .boots-section::before {
@@ -2602,6 +2616,8 @@ img {
 .privacy-section {
   padding: 80px 32px;
   background: var(--white);
+  position: relative;
+  z-index: 2;
 }
 
 .privacy-inner {
@@ -2649,6 +2665,8 @@ img {
   background: var(--navy);
   color: var(--white);
   padding: 64px 32px 32px;
+  position: relative;
+  z-index: 2;
 }
 
 .footer-inner {
