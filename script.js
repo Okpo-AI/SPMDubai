@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Scroll-triggered animations (re-trigger on scroll up/down)
-  var animateCards = document.querySelectorAll('.ciq-card, .feature-card, .number-card, .ciq-panel');
+  var animateCards = document.querySelectorAll('.ciq-card, .feature-card, .number-card, .ciq-panel, .ciq-bento-card');
   if ('IntersectionObserver' in window) {
     var cardTimers = new Map();
     var cardObserver = new IntersectionObserver(function (entries) {
@@ -225,6 +225,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var opsStepCount = opsSteps.length;
     var opsTotalLength = 0;
     var opsBuilt = false;
+    var opsLandmarks = document.querySelectorAll('.ops-landmark');
 
     // Add SVG gradient definition
     var defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
@@ -331,6 +332,20 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       for (var k = 0; k < opsStepCount; k++) {
         opsSteps[k].classList.toggle('ops-step-current', k === lastActive);
+      }
+
+      // Update landmark stack — slide up to stack, slide down to unstack
+      for (var m = 0; m < opsLandmarks.length; m++) {
+        var stepIdx = parseInt(opsLandmarks[m].getAttribute('data-step'), 10);
+        if (opsSteps[stepIdx] && opsSteps[stepIdx].classList.contains('ops-step-active')) {
+          // Active: slid up into view, fully opaque
+          opsLandmarks[m].style.transform = 'translateY(0)';
+          opsLandmarks[m].style.opacity = '1';
+        } else {
+          // Inactive: slid down out of view
+          opsLandmarks[m].style.transform = 'translateY(100%)';
+          opsLandmarks[m].style.opacity = '0';
+        }
       }
 
       opsTicking = false;
@@ -500,4 +515,37 @@ document.addEventListener('DOMContentLoaded', function () {
     toast.classList.add('visible');
     setTimeout(function () { toast.classList.remove('visible'); }, 3000);
   };
+
+  // -- Collections IQ Strategy Toggle --
+  window.toggleStrategy = function (type) {
+    document.querySelectorAll('.ciq-toggle-btn').forEach(function(btn) {
+      btn.classList.remove('active');
+    });
+    document.querySelectorAll('.ciq-strategy-pane').forEach(function(pane) {
+      pane.classList.remove('active');
+    });
+    
+    if (type === 'traditional') {
+      document.getElementById('btn-traditional').classList.add('active');
+      document.getElementById('pane-traditional').classList.add('active');
+    } else {
+      document.getElementById('btn-ciq').classList.add('active');
+      document.getElementById('pane-ciq').classList.add('active');
+    }
+  };
+
+  // -- Collections IQ Scroll Animations --
+  var ciqElements = document.querySelectorAll('.ciq-animate');
+  if (ciqElements.length && 'IntersectionObserver' in window) {
+    var ciqObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('ciq-visible');
+          ciqObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    ciqElements.forEach(function(el) { ciqObserver.observe(el); });
+  }
+
 });
