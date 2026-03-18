@@ -61,15 +61,114 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Numbers slideshow
-  var slides = document.querySelectorAll('.numbers-slide');
-  if (slides.length > 1) {
+  // Image slideshow — click arrows with slide transition
+  var slideshows = document.querySelectorAll('[data-slideshow]');
+  slideshows.forEach(function(container) {
+    var slides = container.querySelectorAll('.numbers-slide');
+    if (slides.length <= 1) return;
+    var idx = 0;
+    var autoTimer = null;
+    var animating = false;
+
+    // Set up slides for horizontal sliding
+    slides.forEach(function(s, i) {
+      s.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+      if (i === 0) {
+        s.style.transform = 'translateX(0)';
+        s.style.opacity = '1';
+      } else {
+        s.style.transform = 'translateX(100%)';
+        s.style.opacity = '0';
+      }
+    });
+
+    function goTo(newIdx, direction) {
+      if (animating) return;
+      animating = true;
+      var oldIdx = idx;
+      idx = ((newIdx % slides.length) + slides.length) % slides.length;
+      if (oldIdx === idx) { animating = false; return; }
+      var dir = direction || (newIdx > oldIdx ? 1 : -1);
+
+      // Position new slide off-screen
+      slides[idx].style.transition = 'none';
+      slides[idx].style.transform = 'translateX(' + (dir * 100) + '%)';
+      slides[idx].style.opacity = '0';
+      slides[idx].classList.add('active');
+
+      // Force reflow
+      void slides[idx].offsetWidth;
+
+      // Animate both
+      slides[idx].style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+      slides[idx].style.transform = 'translateX(0)';
+      slides[idx].style.opacity = '1';
+
+      slides[oldIdx].style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+      slides[oldIdx].style.transform = 'translateX(' + (-dir * 100) + '%)';
+      slides[oldIdx].style.opacity = '0';
+
+      setTimeout(function() {
+        slides[oldIdx].classList.remove('active');
+        animating = false;
+      }, 500);
+    }
+
+    function startAuto() {
+      stopAuto();
+      autoTimer = setInterval(function() { goTo(idx + 1, 1); }, 3500);
+    }
+
+    function stopAuto() {
+      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+    }
+
+    // Create arrow buttons
+    var prevBtn = document.createElement('button');
+    prevBtn.className = 'slide-arrow slide-prev';
+    prevBtn.innerHTML = '&#8249;';
+    prevBtn.setAttribute('aria-label', 'Previous');
+    var nextBtn = document.createElement('button');
+    nextBtn.className = 'slide-arrow slide-next';
+    nextBtn.innerHTML = '&#8250;';
+    nextBtn.setAttribute('aria-label', 'Next');
+    container.appendChild(prevBtn);
+    container.appendChild(nextBtn);
+
+    prevBtn.addEventListener('click', function() {
+      stopAuto(); goTo(idx - 1, -1); startAuto();
+    });
+    nextBtn.addEventListener('click', function() {
+      stopAuto(); goTo(idx + 1, 1); startAuto();
+    });
+
+    startAuto();
+  });
+
+  // Also handle the original standalone slideshow if present
+  var standaloneSlides = document.querySelectorAll('.numbers-slideshow:not([data-slideshow]) > .numbers-slide');
+  if (standaloneSlides.length > 1) {
     var currentSlide = 0;
     setInterval(function () {
-      slides[currentSlide].classList.remove('active');
-      currentSlide = (currentSlide + 1) % slides.length;
-      slides[currentSlide].classList.add('active');
+      standaloneSlides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % standaloneSlides.length;
+      standaloneSlides[currentSlide].classList.add('active');
     }, 3500);
   }
+
+  // Office tab switching
+  var officeTabs = document.querySelectorAll('.office-tab');
+  var officePanels = document.querySelectorAll('.office-panel');
+  officeTabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var office = tab.getAttribute('data-office');
+      officeTabs.forEach(function(t) { t.classList.remove('active'); });
+      officePanels.forEach(function(p) { p.classList.remove('active'); });
+      tab.classList.add('active');
+      var panel = document.getElementById('office-' + office);
+      if (panel) panel.classList.add('active');
+    });
+  });
 
   // Collection card click – expand detail overlay
   var collectionCards = document.querySelectorAll('.collection-card[data-detail]');
@@ -227,6 +326,42 @@ document.addEventListener('DOMContentLoaded', function () {
     var opsBuilt = false;
     var opsLandmarks = document.querySelectorAll('.ops-landmark');
 
+    // Create gradient-colored symbol canvases
+    function renderSymbolGradient(node) {
+      var img = node.querySelector('img');
+      if (!img) return;
+      var existing = node.querySelector('canvas.symbol-canvas');
+      if (existing) existing.remove();
+      var canvas = document.createElement('canvas');
+      canvas.className = 'symbol-canvas';
+      var w = 240, h = 240;
+      canvas.width = w;
+      canvas.height = h;
+      var ctx = canvas.getContext('2d');
+      // Draw the image centered/contained
+      var iw = img.naturalWidth || w;
+      var ih = img.naturalHeight || h;
+      var scale = Math.min(w / iw, h / ih);
+      var dx = (w - iw * scale) / 2;
+      var dy = (h - ih * scale) / 2;
+      ctx.drawImage(img, dx, dy, iw * scale, ih * scale);
+      // Use the image as a mask via composite, then fill with solid color
+      ctx.globalCompositeOperation = 'source-in';
+      ctx.fillStyle = '#1e3a6a'; // Slightly darker blue
+      ctx.fillRect(0, 0, w, h);
+      node.appendChild(canvas);
+    }
+    opsNodes.forEach(function(node) {
+      var img = node.querySelector('img');
+      if (img) {
+        if (img.complete && img.naturalWidth > 0) {
+          renderSymbolGradient(node);
+        } else {
+          img.addEventListener('load', function() { renderSymbolGradient(node); });
+        }
+      }
+    });
+
     // Add SVG gradient definition
     var defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
     var grad = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
@@ -258,15 +393,11 @@ document.addEventListener('DOMContentLoaded', function () {
       var h = timelineRect.height;
       opsSvg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
 
-      // Build smooth cubic bezier path through node centers
+      // Build straight line path through node centers
       var d = 'M ' + points[0].x + ' ' + points[0].y;
       for (var j = 0; j < points.length - 1; j++) {
-        var cur = points[j];
         var nxt = points[j + 1];
-        // Control points at 40% and 60% of vertical distance, keeping horizontal position of current/next
-        var cy1 = cur.y + (nxt.y - cur.y) * 0.4;
-        var cy2 = cur.y + (nxt.y - cur.y) * 0.6;
-        d += ' C ' + cur.x + ' ' + cy1 + ', ' + nxt.x + ' ' + cy2 + ', ' + nxt.x + ' ' + nxt.y;
+        d += ' L ' + nxt.x + ' ' + nxt.y;
       }
 
       opsTrack.setAttribute('d', d);
