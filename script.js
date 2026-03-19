@@ -166,7 +166,9 @@ document.addEventListener('DOMContentLoaded', function () {
       officePanels.forEach(function(p) { p.classList.remove('active'); });
       tab.classList.add('active');
       var panel = document.getElementById('office-' + office);
-      if (panel) panel.classList.add('active');
+      if (panel) {
+        panel.classList.add('active');
+      }
     });
   });
 
