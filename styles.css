@@ -1008,7 +1008,7 @@ img {
   content: "";
   width: 8px;
   height: 8px;
-  background: var(--gold);
+  background: url('assets/pattern.jpg') center 80% / 110% no-repeat;
   border-radius: 50%;
   flex-shrink: 0;
 }
@@ -2142,11 +2142,27 @@ img {
    Meet the Team
    ======================================== */
 .team-section {
-  padding: 100px 32px;
-  background: #f0f2f5;
+  padding: 140px 32px 100px;
+  background-color: #d6dbe1;
+  background-image: url('assets/pattern.jpg');
+  background-size: 110%;
+  background-position: center 80%;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.team-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(214, 219, 225, 0.55);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .team-inner {
+  position: relative;
+  z-index: 1;
   max-width: 1000px;
   margin: 0 auto;
   text-align: center;
@@ -2165,13 +2181,13 @@ img {
   overflow: hidden;
   aspect-ratio: 3 / 4;
   background: #e8eaed;
-  box-shadow: 0 8px 40px rgba(0, 15, 50, 0.18), 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 40px rgba(0, 15, 50, 0.32), 0 2px 10px rgba(0, 0, 0, 0.16);
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
 }
 
 .team-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 60px rgba(0, 15, 50, 0.28), 0 6px 20px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 60px rgba(0, 15, 50, 0.45), 0 6px 24px rgba(0, 0, 0, 0.22);
 }
 
 .team-photo {
@@ -2179,18 +2195,23 @@ img {
   inset: 0;
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 .team-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  width: 80%;
+  height: 92%;
+  object-fit: contain;
+  object-position: bottom center;
   transition: transform 0.5s ease;
+  filter: drop-shadow(6px 8px 16px rgba(0, 10, 40, 0.45));
 }
 
 .team-card:hover .team-photo img {
   transform: scale(1.04);
+  transform-origin: bottom center;
 }
 
 .team-overlay {
@@ -2199,7 +2220,7 @@ img {
   left: 0;
   right: 0;
   padding: 28px 22px 22px;
-  background: linear-gradient(to top, rgba(0,15,50,0.72) 0%, rgba(0,15,50,0.5) 25%, rgba(0,15,50,0.25) 55%, rgba(0,15,50,0.08) 75%, transparent 100%);
+  background: linear-gradient(to top, rgba(0,15,50,0.80) 0%, rgba(0,15,50,0.60) 15%, rgba(0,15,50,0.40) 30%, rgba(0,15,50,0.20) 47%, rgba(0,15,50,0.06) 62%, transparent 78%);
   text-align: left;
 }
 
@@ -2211,6 +2232,7 @@ img {
   align-items: center;
   gap: 8px;
   margin-bottom: 4px;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.35);
 }
 
 .team-badge {
@@ -2222,12 +2244,14 @@ img {
   font-weight: 600;
   color: rgba(255,255,255,0.85);
   margin-bottom: 2px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
 
 .team-exp {
   font-size: 12px;
   color: rgba(255,255,255,0.65);
   line-height: 1.5;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
 
 @media (max-width: 768px) {
@@ -2324,8 +2348,8 @@ img {
   left: 0;
   top: 8px;
   width: 8px;
-  height: 8px;
-  border-radius: 50%;
+  width: 62%;
+  height: 73%;
   background: var(--gold);
 }
 
@@ -2333,8 +2357,8 @@ img {
   color: var(--white);
   font-weight: 700;
 }
-
-.boots-photo {
+  width: 67%;
+  height: 78%;
   display: flex;
   justify-content: center;
 }
