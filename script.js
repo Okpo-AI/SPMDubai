@@ -1,4 +1,15 @@
 /* Mobile menu toggle */
+
+function ctaFormSubmit(form) {
+  var name = form.elements['name'].value.trim();
+  var email = form.elements['email'].value.trim();
+  var message = form.elements['message'].value.trim();
+  var subject = encodeURIComponent('Enquiry from ' + (name || 'Website Visitor'));
+  var body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
+  window.location.href = 'mailto:dubai@spmadrid.ae?subject=' + subject + '&body=' + body;
+  return false;
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   var toggle = document.querySelector('.menu-toggle');
   var links = document.querySelector('.navbar-links');
@@ -123,26 +134,48 @@ document.addEventListener('DOMContentLoaded', function () {
       if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
     }
 
-    // Create arrow buttons
-    var prevBtn = document.createElement('button');
-    prevBtn.className = 'slide-arrow slide-prev';
-    prevBtn.innerHTML = '&#8249;';
-    prevBtn.setAttribute('aria-label', 'Previous');
-    var nextBtn = document.createElement('button');
-    nextBtn.className = 'slide-arrow slide-next';
-    nextBtn.innerHTML = '&#8250;';
-    nextBtn.setAttribute('aria-label', 'Next');
-    container.appendChild(prevBtn);
-    container.appendChild(nextBtn);
-
-    prevBtn.addEventListener('click', function() {
-      stopAuto(); goTo(idx - 1, -1); startAuto();
-    });
-    nextBtn.addEventListener('click', function() {
-      stopAuto(); goTo(idx + 1, 1); startAuto();
-    });
-
     startAuto();
+
+    // Touch swipe support
+    var touchStartX = 0;
+    var touchEndX = 0;
+    container.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    container.addEventListener('touchend', function(e) {
+      touchEndX = e.changedTouches[0].screenX;
+      var diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 40) {
+        stopAuto();
+        if (diff > 0) { goTo(idx + 1, 1); } else { goTo(idx - 1, -1); }
+        startAuto();
+      }
+    }, { passive: true });
+
+    // Mouse drag swipe support
+    var mouseStartX = 0;
+    var isDragging = false;
+    container.addEventListener('mousedown', function(e) {
+      mouseStartX = e.clientX;
+      isDragging = true;
+      e.preventDefault();
+    });
+    container.addEventListener('mousemove', function(e) {
+      if (isDragging) { e.preventDefault(); }
+    });
+    container.addEventListener('mouseup', function(e) {
+      if (!isDragging) return;
+      isDragging = false;
+      var diff = mouseStartX - e.clientX;
+      if (Math.abs(diff) > 40) {
+        stopAuto();
+        if (diff > 0) { goTo(idx + 1, 1); } else { goTo(idx - 1, -1); }
+        startAuto();
+      }
+    });
+    container.addEventListener('mouseleave', function() {
+      isDragging = false;
+    });
   });
 
   // Also handle the original standalone slideshow if present
@@ -158,17 +191,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Office tab switching
   var officeTabs = document.querySelectorAll('.office-tab');
-  var officePanels = document.querySelectorAll('.office-panel');
   officeTabs.forEach(function(tab) {
     tab.addEventListener('click', function() {
       var office = tab.getAttribute('data-office');
+      // Update active tab
       officeTabs.forEach(function(t) { t.classList.remove('active'); });
-      officePanels.forEach(function(p) { p.classList.remove('active'); });
       tab.classList.add('active');
+      // Switch office panel
+      document.querySelectorAll('.office-panel').forEach(function(p) { p.classList.remove('active'); });
       var panel = document.getElementById('office-' + office);
-      if (panel) {
-        panel.classList.add('active');
-      }
+      if (panel) panel.classList.add('active');
     });
   });
 
@@ -218,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Scroll-triggered animations (re-trigger on scroll up/down)
-  var animateCards = document.querySelectorAll('.ciq-card, .feature-card, .number-card, .ciq-panel, .ciq-bento-card');
+  var animateCards = document.querySelectorAll('.ciq-card, .feature-card, .number-card, .ciq-panel, .ciq-bento-card, .privacy-card');
   if ('IntersectionObserver' in window) {
     var cardTimers = new Map();
     var cardObserver = new IntersectionObserver(function (entries) {
@@ -242,265 +274,6 @@ document.addEventListener('DOMContentLoaded', function () {
       cardObserver.observe(card);
     });
 
-  }
-
-  // Lifecycle scroll-progress animation
-  var lcTimeline = document.querySelector('.lc-timeline');
-  if (lcTimeline) {
-    var lcLine = lcTimeline.querySelector('.lc-line');
-    var lcSteps = lcTimeline.querySelectorAll('.lc-step');
-    var stepCount = lcSteps.length;
-    var thresholds = [];
-    for (var i = 0; i < stepCount; i++) {
-      // First step at 0.15 progress, evenly spaced after that
-      thresholds.push(0.15 + (i * 0.7 / stepCount));
-    }
-    var lcTicking = false;
-
-    function updateLifecycleProgress() {
-      // Track the timeline element directly
-      var rect = lcTimeline.getBoundingClientRect();
-      var winH = window.innerHeight;
-      // Start: timeline top hits 60% of viewport (lower half, just entered)
-      // End: timeline top hits 20% of viewport (upper area, still fully visible)
-      var start = winH * 0.6;
-      var end = winH * 0.2;
-      var progress = (start - rect.top) / (start - end);
-      progress = Math.max(0, Math.min(1, progress));
-
-      lcTimeline.style.setProperty('--lc-progress', progress);
-
-      // Scale line progress so it reaches 100% when last step activates
-      var lastThreshold = thresholds[stepCount - 1];
-      var lineProgress = Math.min(1, progress / (lastThreshold + 0.05));
-      lcTimeline.style.setProperty('--lc-line-progress', lineProgress);
-
-      for (var i = 0; i < stepCount; i++) {
-        var step = lcSteps[i];
-        if (progress >= thresholds[i]) {
-          step.classList.add('lc-step-active');
-        } else {
-          step.classList.remove('lc-step-active');
-          step.classList.remove('lc-step-current');
-        }
-      }
-
-      var lastActive = -1;
-      for (var j = stepCount - 1; j >= 0; j--) {
-        if (lcSteps[j].classList.contains('lc-step-active')) {
-          lastActive = j;
-          break;
-        }
-      }
-      for (var k = 0; k < stepCount; k++) {
-        lcSteps[k].classList.toggle('lc-step-current', k === lastActive);
-      }
-
-      lcTicking = false;
-    }
-
-    function onLcScroll() {
-      if (!lcTicking) {
-        lcTicking = true;
-        requestAnimationFrame(updateLifecycleProgress);
-      }
-    }
-
-    window.addEventListener('scroll', onLcScroll, { passive: true });
-    window.addEventListener('resize', function () {
-      requestAnimationFrame(updateLifecycleProgress);
-    });
-    updateLifecycleProgress();
-  }
-
-  // =============================================
-  // Global Operations Hub — Curved Path scroll progress
-  // =============================================
-  var opsTimeline = document.getElementById('ops-timeline');
-  if (opsTimeline) {
-    var opsSvg = document.getElementById('ops-curve');
-    var opsTrack = opsSvg.querySelector('.ops-curve-track');
-    var opsFill = opsSvg.querySelector('.ops-curve-fill');
-    var opsSteps = opsTimeline.querySelectorAll('.ops-step');
-    var opsNodes = opsTimeline.querySelectorAll('.ops-step-node');
-    var opsStepCount = opsSteps.length;
-    var opsTotalLength = 0;
-    var opsBuilt = false;
-    var opsLandmarks = document.querySelectorAll('.ops-landmark');
-
-    // Create gradient-colored symbol canvases
-    function renderSymbolGradient(node) {
-      var img = node.querySelector('img');
-      if (!img) return;
-      var existing = node.querySelector('canvas.symbol-canvas');
-      if (existing) existing.remove();
-      var canvas = document.createElement('canvas');
-      canvas.className = 'symbol-canvas';
-      var w = 240, h = 240;
-      canvas.width = w;
-      canvas.height = h;
-      var ctx = canvas.getContext('2d');
-      // Draw the image centered/contained
-      var iw = img.naturalWidth || w;
-      var ih = img.naturalHeight || h;
-      var scale = Math.min(w / iw, h / ih);
-      var dx = (w - iw * scale) / 2;
-      var dy = (h - ih * scale) / 2;
-      ctx.drawImage(img, dx, dy, iw * scale, ih * scale);
-      // Use the image as a mask via composite, then fill with solid color
-      ctx.globalCompositeOperation = 'source-in';
-      ctx.fillStyle = '#1e3a6a'; // Slightly darker blue
-      ctx.fillRect(0, 0, w, h);
-      node.appendChild(canvas);
-    }
-    opsNodes.forEach(function(node) {
-      var img = node.querySelector('img');
-      if (img) {
-        if (img.complete && img.naturalWidth > 0) {
-          renderSymbolGradient(node);
-        } else {
-          img.addEventListener('load', function() { renderSymbolGradient(node); });
-        }
-      }
-    });
-
-    // Add SVG gradient definition
-    var defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-    var grad = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
-    grad.setAttribute('id', 'ops-grad');
-    grad.setAttribute('x1', '0'); grad.setAttribute('y1', '0');
-    grad.setAttribute('x2', '0'); grad.setAttribute('y2', '1');
-    var stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
-    stop1.setAttribute('offset', '0%'); stop1.setAttribute('stop-color', '#b8860b');
-    var stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
-    stop2.setAttribute('offset', '100%'); stop2.setAttribute('stop-color', '#63b3ed');
-    grad.appendChild(stop1); grad.appendChild(stop2);
-    defs.appendChild(grad);
-    opsSvg.insertBefore(defs, opsSvg.firstChild);
-
-    function buildOpsCurve() {
-      var timelineRect = opsTimeline.getBoundingClientRect();
-      var points = [];
-      for (var i = 0; i < opsNodes.length; i++) {
-        var nodeRect = opsNodes[i].getBoundingClientRect();
-        points.push({
-          x: nodeRect.left + nodeRect.width / 2 - timelineRect.left,
-          y: nodeRect.top + nodeRect.height / 2 - timelineRect.top
-        });
-      }
-
-      if (points.length < 2) return;
-
-      var w = timelineRect.width;
-      var h = timelineRect.height;
-      opsSvg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
-
-      // Build straight line path through node centers
-      var d = 'M ' + points[0].x + ' ' + points[0].y;
-      for (var j = 0; j < points.length - 1; j++) {
-        var nxt = points[j + 1];
-        d += ' L ' + nxt.x + ' ' + nxt.y;
-      }
-
-      opsTrack.setAttribute('d', d);
-      opsFill.setAttribute('d', d);
-
-      opsTotalLength = opsFill.getTotalLength();
-      opsFill.style.strokeDasharray = opsTotalLength;
-      opsFill.style.strokeDashoffset = opsTotalLength;
-      opsBuilt = true;
-    }
-
-    // Build curve after layout settles
-    setTimeout(buildOpsCurve, 100);
-    window.addEventListener('resize', function () {
-      opsBuilt = false;
-      buildOpsCurve();
-      requestAnimationFrame(updateOpsProgress);
-    });
-
-    var opsTicking = false;
-
-    function updateOpsProgress() {
-      var winH = window.innerHeight;
-      var midScreen = winH * 0.5;
-
-      // Per-node activation: trigger when node center crosses middle of screen
-      for (var i = 0; i < opsStepCount; i++) {
-        var nodeRect = opsNodes[i].getBoundingClientRect();
-        var nodeCenter = nodeRect.top + nodeRect.height / 2;
-        if (nodeCenter <= midScreen) {
-          opsSteps[i].classList.add('ops-step-active');
-        } else {
-          opsSteps[i].classList.remove('ops-step-active');
-          opsSteps[i].classList.remove('ops-step-current');
-        }
-      }
-
-      // Line progress: 0 when first node at mid, 1 when last node at mid
-      var lineProgress = 0;
-      if (opsStepCount >= 2) {
-        var firstRect = opsNodes[0].getBoundingClientRect();
-        var lastRect = opsNodes[opsStepCount - 1].getBoundingClientRect();
-        var firstY = firstRect.top + firstRect.height / 2;
-        var lastY = lastRect.top + lastRect.height / 2;
-        var span = lastY - firstY;
-        if (span !== 0) {
-          lineProgress = (midScreen - firstY) / span;
-        }
-        lineProgress = Math.max(0, Math.min(1, lineProgress));
-      }
-
-      if (opsBuilt && opsTotalLength > 0) {
-        opsFill.style.strokeDashoffset = opsTotalLength * (1 - lineProgress);
-      }
-
-      // Mark last active as current
-      var lastActive = -1;
-      for (var j = opsStepCount - 1; j >= 0; j--) {
-        if (opsSteps[j].classList.contains('ops-step-active')) {
-          lastActive = j;
-          break;
-        }
-      }
-      for (var k = 0; k < opsStepCount; k++) {
-        opsSteps[k].classList.toggle('ops-step-current', k === lastActive);
-      }
-
-      // Direction-aware landmark transitions
-      // Only the current landmark is visible; previous and future are hidden
-      for (var m = 0; m < opsLandmarks.length; m++) {
-        var stepIdx = parseInt(opsLandmarks[m].getAttribute('data-step'), 10);
-        if (stepIdx === lastActive) {
-          // Current: fully visible
-          opsLandmarks[m].style.transform = 'translateY(0)';
-          opsLandmarks[m].style.opacity = '1';
-        } else if (stepIdx < lastActive) {
-          // Previous: hidden (already passed — slid up and out)
-          opsLandmarks[m].style.transform = 'translateY(-30%)';
-          opsLandmarks[m].style.opacity = '0';
-        } else {
-          // Future: waiting below
-          opsLandmarks[m].style.transform = 'translateY(100%)';
-          opsLandmarks[m].style.opacity = '0';
-        }
-      }
-
-      opsTicking = false;
-    }
-
-    function onOpsScroll() {
-      if (!opsTicking) {
-        opsTicking = true;
-        requestAnimationFrame(updateOpsProgress);
-      }
-    }
-
-    window.addEventListener('scroll', onOpsScroll, { passive: true });
-    window.addEventListener('resize', function () {
-      requestAnimationFrame(updateOpsProgress);
-    });
-    updateOpsProgress();
   }
 
   // Navbar background on scroll + glassmorphic
