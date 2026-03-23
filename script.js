@@ -472,4 +472,17 @@ document.addEventListener('DOMContentLoaded', function () {
     ciqElements.forEach(function(el) { ciqObserver.observe(el); });
   }
 
+  // =============================================
+  // Team Executive Accordion
+  // =============================================
+  var teamPanels = document.querySelectorAll('.team-panel[data-index]');
+
+  teamPanels.forEach(function(panel) {
+    panel.addEventListener('click', function() {
+      if (panel.classList.contains('active')) return;
+      teamPanels.forEach(function(p) { p.classList.remove('active'); });
+      panel.classList.add('active');
+    });
+  });
+
 });

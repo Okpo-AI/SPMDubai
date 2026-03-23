@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=77">
+  <link rel="stylesheet" href="styles.css?v=89">
 </head>
 <body>
 
@@ -21,6 +21,7 @@
       <ul class="navbar-links">
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
+        <li><a href="https://spmadrid.com/" target="_blank" rel="noopener">S.P. Madrid HQ</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
 
@@ -143,7 +144,6 @@
         <div class="office-tabs">
           <button class="office-tab active" data-office="dubai">Dubai, UAE</button>
           <button class="office-tab" data-office="philippines">Philippines</button>
-          <button class="office-tab" data-office="singapore">Singapore</button>
         </div>
         <div class="office-panels">
           <div class="office-panel active" id="office-dubai">
@@ -178,19 +178,7 @@
               <strong>Visit Us:</strong> <a href="https://www.google.com/maps/search/?api=1&query=17th+Floor,+Chatham+House,+Valero+Street+corner+V.A.+Rufino+Street,+Salcedo+Village,+Makati+City" target="_blank" style="color: #4a5568; text-decoration: underline; font-weight: 400;">17th Floor, Chatham House, Valero Street corner V.A. Rufino Street, Salcedo Village, Makati City.</a>
             </div>
           </div>
-          <div class="office-panel" id="office-singapore">
-            <div class="office-photos">
-              <div class="numbers-slideshow" data-slideshow>
-                <img src="assets/spmsingapore.avif" alt="Singapore office" class="numbers-slide active" />
-                <img src="assets/spmsingapore1.avif" alt="Singapore office 1" class="numbers-slide" />
-                <img src="assets/spmsingapore2.avif" alt="Singapore office 2" class="numbers-slide" />
-                <img src="assets/spmsingapore3.avif" alt="Singapore office 3" class="numbers-slide" />
-              </div>
-            </div>
-            <div class="office-address" style="margin-top: 12px; margin-bottom: 5px; font-size: 13px; line-height: 1.6; color: #4a5568;">
-              <strong>Visit Us:</strong> <a href="https://www.google.com/maps/search/?api=1&query=8+Marina+View,+Asia+Square+Tower+1,+%2337-01,+Singapore+018960" target="_blank" style="color: #4a5568; text-decoration: underline; font-weight: 400;">8 Marina View, Asia Square Tower 1, #37-01, Singapore 018960.</a>
-            </div>
-          </div>
+
         </div>
       </div>
     </div>
@@ -264,39 +252,67 @@
   <!-- ==================== MEET THE TEAM ==================== -->
   <section class="team-section">
     <div class="team-inner">
-      <div class="section-heading">
-        <h2>Meet the Team</h2>
+      <div class="team-header">
+        <div class="team-header-text">
+          <div class="section-heading"><h2>Meet the Team</h2></div>
+          <p class="section-subtitle">Our dedicated team consists of experts across engineering and strategy, each committed to driving results and innovation.</p>
+        </div>
       </div>
-      <p class="section-subtitle">Leadership driving recovery excellence across the GCC</p>
-      <div class="team-grid">
-        <div class="team-card">
-          <div class="team-photo">
+      <div class="team-accordion">
+        <div class="team-panel active" data-index="0">
+          <div class="team-panel-photo">
+            <img src="assets/sir_ian.png" alt="Ian Madrid">
+          </div>
+          <div class="team-panel-info">
+            <span class="team-badge">15+ Years Experience</span>
+            <span class="team-panel-role">CEO, S.P. Madrid</span>
+            <span class="team-panel-name">Ian Madrid</span>
+            <p class="team-panel-bio">Visionary leader driving S.P. Madrid's recovery excellence across the GCC with over 15 years of strategic and operational expertise.</p>
+          </div>
+          <div class="team-panel-sliver">
+            <span class="team-sliver-name">Ian</span>
+          </div>
+        </div>
+        <div class="team-panel" data-index="1">
+          <div class="team-panel-photo">
             <img src="assets/anita.png" alt="Anita">
           </div>
-          <div class="team-overlay">
-            <h3 class="team-name">Anita</h3>
-            <p class="team-role">Business Unit Director</p>
-            <p class="team-exp">16 years in Collections</p>
+          <div class="team-panel-info">
+            <span class="team-badge">16+ Years Experience</span>
+            <span class="team-panel-role">Business Unit Director</span>
+            <span class="team-panel-name">Anita</span>
+            <p class="team-panel-bio">Leads business development and client partnerships with deep expertise in financial recovery and stakeholder relations.</p>
+          </div>
+          <div class="team-panel-sliver">
+            <span class="team-sliver-name">Anita</span>
           </div>
         </div>
-        <div class="team-card">
-          <div class="team-photo">
+        <div class="team-panel" data-index="2">
+          <div class="team-panel-photo">
             <img src="assets/mubarak.png" alt="Mubarak">
           </div>
-          <div class="team-overlay">
-            <h3 class="team-name">Mubarak</h3>
-            <p class="team-role">Executive Director</p>
-            <p class="team-exp">20 years in Collections</p>
+          <div class="team-panel-info">
+            <span class="team-badge">20+ Years Experience</span>
+            <span class="team-panel-role">Executive Director</span>
+            <span class="team-panel-name">Mubarak</span>
+            <p class="team-panel-bio">Oversees executive operations and strategic initiatives, ensuring seamless delivery across all recovery mandates.</p>
+          </div>
+          <div class="team-panel-sliver">
+            <span class="team-sliver-name">Mubarak</span>
           </div>
         </div>
-        <div class="team-card">
-          <div class="team-photo">
+        <div class="team-panel" data-index="3">
+          <div class="team-panel-photo">
             <img src="assets/ivy.png" alt="Ivy">
           </div>
-          <div class="team-overlay">
-            <h3 class="team-name">Ivy</h3>
-            <p class="team-role">Operations Manager</p>
-            <p class="team-exp">15 years in Collections</p>
+          <div class="team-panel-info">
+            <span class="team-badge">15+ Years Experience</span>
+            <span class="team-panel-role">Operations Manager</span>
+            <span class="team-panel-name">Ivy</span>
+            <p class="team-panel-bio">Manages day-to-day operations and process optimization, ensuring efficiency and quality across all projects.</p>
+          </div>
+          <div class="team-panel-sliver">
+            <span class="team-sliver-name">Ivy</span>
           </div>
         </div>
       </div>

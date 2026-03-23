@@ -2139,146 +2139,277 @@ img {
 }
 
 /* ========================================
-   Meet the Team
+   Meet the Team — Executive Accordion
    ======================================== */
 .team-section {
-  padding: 140px 32px 100px;
-  background-color: #d6dbe1;
-  background-image: url('assets/pattern.jpg');
-  background-size: 110%;
-  background-position: center 80%;
-  background-repeat: no-repeat;
+  padding: 100px 0 120px;
+  background: #f0f2f5;
   position: relative;
-}
-
-.team-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-color: rgba(214, 219, 225, 0.55);
-  pointer-events: none;
-  z-index: 0;
+  overflow: hidden;
 }
 
 .team-inner {
   position: relative;
   z-index: 1;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
-  text-align: center;
+  padding: 0 100px;
+}
+
+.team-header {
+  margin-bottom: 80px;
+}
+
+.team-header-text {
+  max-width: 680px;
 }
 
 .team-section .section-heading h2 {
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  font-size: 48px;
+  font-weight: 800;
+  color: #0c1a3a;
+  text-shadow: none;
+  text-align: left;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
 }
 
 .team-section .section-subtitle {
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  font-weight: 400;
+  color: #6b7280;
+  text-shadow: none;
+  text-align: left;
+  margin-bottom: 0;
+  line-height: 1.65;
 }
 
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  margin-top: 48px;
-}
-
-.team-card {
+/* ---- Accordion Row ---- */
+.team-accordion {
+  display: flex;
+  gap: 10px;
+  height: 400px;
+  overflow: visible;
   position: relative;
-  border-radius: 28px;
+}
+
+/* ---- Panel (each person) ---- */
+.team-panel {
+  position: relative;
+  flex: 0 0 13%;
+  min-width: 80px;
+  height: 100%;
+  border-radius: 20px;
   overflow: hidden;
-  aspect-ratio: 3 / 4;
-  background: rgba(184, 134, 11, 0.18);
-  backdrop-filter: blur(18px) saturate(1.6);
-  -webkit-backdrop-filter: blur(18px) saturate(1.6);
-  border: 1px solid rgba(184, 134, 11, 0.35);
-  box-shadow: 0 8px 32px rgba(184, 134, 11, 0.1), inset 0 1px 0 rgba(255,255,255,0.35);
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+  cursor: pointer;
+  transition:
+    flex 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    filter 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    border-radius 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: grayscale(100%);
+  opacity: 0.5;
 }
 
-.team-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 60px rgba(0, 15, 50, 0.35), 0 6px 24px rgba(0, 0, 0, 0.18);
+.team-panel.active {
+  flex: 1 1 42%;
+  filter: grayscale(0%);
+  opacity: 1;
+  cursor: default;
+  overflow: visible;
+  border-radius: 60px 60px 20px 20px;
+  z-index: 5;
 }
 
-.team-photo {
+/* ---- Photo ---- */
+.team-panel-photo {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  overflow: visible;
+  background: linear-gradient(170deg, rgba(12, 26, 58, 0.35) 0%, rgba(10, 20, 48, 0.92) 65%);
+  border-radius: inherit;
 }
 
-.team-photo img {
-  width: 80%;
-  height: 92%;
-  object-fit: contain;
-  object-position: bottom center;
-  transition: transform 0.5s ease;
-  filter: drop-shadow(6px 8px 16px rgba(0, 10, 40, 0.45));
+.team-panel-photo img {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 105%;
+  object-fit: cover;
+  object-position: top center;
+  transition:
+    all 0.65s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.team-card:hover .team-photo img {
-  transform: scale(1.04);
-  transform-origin: bottom center;
+/* Active: portrait rises well above the card, positioned right */
+.team-panel.active .team-panel-photo {
+  overflow: visible;
 }
 
-.team-overlay {
+.team-panel.active .team-panel-photo img {
+  width: 75%;
+  height: 120%;
+  left: auto;
+  right: 5%;
+  transform: translateX(0) translateY(-5%);
+  object-position: top center;
+}
+
+/* ---- Info Overlay (active only) ---- */
+.team-panel-info {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 28px 22px 22px;
-  background: linear-gradient(to top, rgba(0,15,50,0.80) 0%, rgba(0,15,50,0.60) 15%, rgba(0,15,50,0.40) 30%, rgba(0,15,50,0.20) 47%, rgba(0,15,50,0.06) 62%, transparent 78%);
-  text-align: left;
+  padding: 80px 32px 32px;
+  background: linear-gradient(to top, rgba(8, 18, 42, 0.94) 0%, rgba(8, 18, 42, 0.6) 50%, transparent 100%);
+  z-index: 10;
+  border-radius: 0 0 20px 20px;
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.15s,
+    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.15s;
+  pointer-events: none;
 }
 
-.team-name {
-  font-size: 20px;
-  font-weight: 700;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
-  text-shadow: 0 1px 6px rgba(0,0,0,0.35);
+.team-panel.active .team-panel-info {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
+/* Experience pill */
 .team-badge {
-  flex-shrink: 0;
+  display: inline-block;
+  padding: 6px 16px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 100px;
+  margin-bottom: 16px;
 }
 
-.team-role {
-  font-size: 13px;
-  font-weight: 600;
-  color: rgba(255,255,255,0.85);
-  margin-bottom: 2px;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+.team-panel-role {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 6px;
 }
 
-.team-exp {
-  font-size: 12px;
-  color: rgba(255,255,255,0.65);
-  line-height: 1.5;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+.team-panel-name {
+  display: block;
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: -0.3px;
+  text-shadow: 0 2px 12px rgba(8, 18, 42, 0.6);
+  margin-bottom: 10px;
 }
 
+.team-panel-bio {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 380px;
+}
+
+/* ---- Sliver Label (inactive only) ---- */
+.team-panel-sliver {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 0.35s ease 0.05s;
+}
+
+.team-panel.active .team-panel-sliver {
+  opacity: 0;
+  transition-delay: 0s;
+}
+
+.team-sliver-name {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 1px 6px rgba(8, 18, 42, 0.7);
+}
+
+/* ---- Hover on inactive: slight opacity boost ---- */
+.team-panel:not(.active):hover {
+  opacity: 0.7;
+}
+
+/* ---- Responsive ---- */
 @media (max-width: 768px) {
-  .team-grid {
-    grid-template-columns: 1fr;
-    max-width: 320px;
-    margin-left: auto;
-    margin-right: auto;
+  .team-section {
+    padding: 64px 0 80px;
   }
+  .team-inner {
+    padding: 0 20px;
+  }
+  .team-section .section-heading h2 {
+    font-size: 32px;
+  }
+  .team-section .section-subtitle {
+    font-size: 14px;
+  }
+  .team-accordion {
+    height: 360px;
+    gap: 6px;
+  }
+  .team-panel {
+    border-radius: 14px;
+    flex: 0 0 15%;
+    min-width: 50px;
+  }
+  .team-panel.active {
+    flex: 1 1 50%;
+    border-radius: 40px 40px 14px 14px;
+  }
+  .team-panel-name { font-size: 22px; }
+  .team-panel-bio { font-size: 12px; }
+  .team-panel-info { padding: 60px 20px 24px; }
+  .team-badge { font-size: 9px; padding: 5px 12px; }
+  .team-sliver-name { font-size: 11px; }
 }
 
 @media (max-width: 1024px) and (min-width: 769px) {
-  .team-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+  .team-inner {
+    padding: 0 48px;
   }
+  .team-section .section-heading h2 {
+    font-size: 40px;
+  }
+  .team-accordion {
+    height: 420px;
+    gap: 8px;
+  }
+  .team-panel-name { font-size: 24px; }
+  .team-panel-bio { font-size: 13px; max-width: 300px; }
 }
 
 /* ========================================
