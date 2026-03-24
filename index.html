@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=89">
+  <link rel="stylesheet" href="styles.css?v=103">
 </head>
 <body>
 
@@ -19,18 +19,35 @@
       </a>
 
       <ul class="navbar-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="https://spmadrid.com/" target="_blank" rel="noopener">S.P. Madrid HQ</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about" data-i18n="nav.about">About</a></li>
+        <li><a href="#services" data-i18n="nav.services">Services</a></li>
+        <li><a href="https://spmadrid.com/" target="_blank" rel="noopener" data-i18n="nav.hq">S.P. Madrid HQ</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
       </ul>
 
       <div class="navbar-actions">
-        <button class="lang-toggle">
-          <span>🌐</span>
-          <span>English</span>
-        </button>
-        <a href="mailto:dubai@spmadrid.ae" class="btn-get-started">Get Started</a>
+        <div class="lang-switcher">
+          <button class="lang-toggle" id="lang-toggle-btn" aria-expanded="false" aria-haspopup="true">
+            <span>🌐</span>
+            <span class="lang-toggle-label">English</span>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="margin-left:2px"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="lang-dropdown" id="lang-dropdown" role="menu">
+            <button class="lang-dropdown-item active" data-lang="en" role="menuitem">
+              English
+            </button>
+            <button class="lang-dropdown-item" data-lang="fil" role="menuitem">
+              Filipino
+            </button>
+            <button class="lang-dropdown-item" data-lang="hi" role="menuitem">
+              हिन्दी <span class="lang-native">Hindi</span>
+            </button>
+            <button class="lang-dropdown-item" data-lang="ar" role="menuitem">
+              العربية <span class="lang-native">Arabic</span>
+            </button>
+          </div>
+        </div>
+        <a href="mailto:dubai@spmadrid.ae" class="btn-get-started" data-i18n="nav.getStarted">Get Started</a>
       </div>
 
       <button class="menu-toggle" aria-label="Toggle menu">
@@ -47,10 +64,10 @@
     <div class="world-map-bg">
       <img src="assets/worldmap.png" alt="" class="world-map-img">
     </div>
-    <h1>Debt Recovery Solutions for the GCC</h1>
-    <p class="hero-subtitle">Built for the region. Delivered with local expertise, multilingual capability, and proven recovery performance.</p>
+    <h1 data-i18n="hero.title">Debt Recovery Solutions for the GCC</h1>
+    <p class="hero-subtitle" data-i18n="hero.subtitle">Built for the region. Delivered with local expertise, multilingual capability, and proven recovery performance.</p>
     <div class="hero-buttons">
-      <a href="mailto:dubai@spmadrid.ae" class="btn-primary">Contact Us <span>&rarr;</span></a>
+      <a href="mailto:dubai@spmadrid.ae" class="btn-primary" data-i18n="hero.cta">Contact Us</a>
     </div>
     <!-- Language Widget Card -->
     <div class="language-card">
@@ -79,8 +96,8 @@
   <!-- ==================== TRUST BAR ==================== -->
   <section class="trust-bar" id="clients">
     <div class="trust-bar-inner">
-      <p class="trust-label">Trusted Partners</p>
-      <p class="trust-subtext">#1 Trusted Partner for the GCC's Largest Financial Institutions</p>
+      <p class="trust-label" data-i18n="trust.label">Trusted Partners</p>
+      <p class="trust-subtext" data-i18n="trust.subtext">#1 Trusted Partner for the GCC's Largest Financial Institutions</p>
 
       <!-- Row 1: scrolls left -->
       <div class="carousel-wrapper">
@@ -131,9 +148,9 @@
     <div class="numbers-inner">
       <div class="numbers-top">
         <div class="numbers-text">
-          <p class="numbers-label">By The Numbers</p>
-          <h2 class="numbers-heading">Delivering results across the GCC</h2>
-          <p class="numbers-subtitle">Our regional footprint and multilingual capabilities ensure every account is reached, every debtor is engaged, and every recovery is maximized.</p>
+          <p class="numbers-label" data-i18n="numbers.label">By The Numbers</p>
+          <h2 class="numbers-heading" data-i18n="numbers.heading">Delivering results across the GCC</h2>
+          <p class="numbers-subtitle" data-i18n="numbers.subtitle">Our regional footprint and multilingual capabilities ensure every account is reached, every debtor is engaged, and every recovery is maximized.</p>
         </div>
         <div class="numbers-stat-banner">
           <div class="number-value" data-count="3000" data-prefix="+">0</div>
@@ -188,16 +205,16 @@
   <section class="features-section" id="services">
     <div class="features-inner">
       <div class="section-heading">
-        <h2>Built for financial institutions</h2>
+        <h2 data-i18n="features.title">Built for financial institutions</h2>
       </div>
-      <p class="section-subtitle">Comprehensive recovery solutions across secured and unsecured portfolios</p>
+      <p class="section-subtitle" data-i18n="features.subtitle">Comprehensive recovery solutions across secured and unsecured portfolios</p>
       <div class="features-grid">
         <div class="feature-card">
           <div class="feature-icon-ring">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           </div>
-          <h3>Secured Products</h3>
-          <p>Specialized recovery for asset-backed lending across the GCC region.</p>
+          <h3 data-i18n="features.secured.title">Secured Products</h3>
+          <p data-i18n="features.secured.desc">Specialized recovery for asset-backed lending across the GCC region.</p>
           <ul class="feature-list">
             <li>Housing Finance</li>
             <li>Auto Finance</li>
@@ -209,8 +226,8 @@
           <div class="feature-icon-ring">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
           </div>
-          <h3>Unsecured Products</h3>
-          <p>Expert recovery services for credit cards, personal loans, and SME financing.</p>
+          <h3 data-i18n="features.unsecured.title">Unsecured Products</h3>
+          <p data-i18n="features.unsecured.desc">Expert recovery services for credit cards, personal loans, and SME financing.</p>
           <ul class="feature-list">
             <li>Credit Cards</li>
             <li>SME Loans</li>
@@ -223,8 +240,8 @@
           <div class="feature-icon-ring">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
           </div>
-          <h3>Audit Recovery</h3>
-          <p>Advanced portfolio analysis and write-off recovery across all asset classes.</p>
+          <h3 data-i18n="features.audit.title">Audit Recovery</h3>
+          <p data-i18n="features.audit.desc">Advanced portfolio analysis and write-off recovery across all asset classes.</p>
           <ul class="feature-list">
             <li>Portfolio Analysis</li>
             <li>Write-off Recovery</li>
@@ -236,8 +253,8 @@
           <div class="feature-icon-ring">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2A15.3 15.3 0 0 1 17 12a15.3 15.3 0 0 1-5 10 15.3 15.3 0 0 1-5-10 15.3 15.3 0 0 1 5-10z"/></svg>
           </div>
-          <h3>Local &amp; International Accounts</h3>
-          <p>Comprehensive account management extending across domestic borders and overseas jurisdictions.</p>
+          <h3 data-i18n="features.international.title">Local &amp; International Accounts</h3>
+          <p data-i18n="features.international.desc">Comprehensive account management extending across domestic borders and overseas jurisdictions.</p>
           <ul class="feature-list">
             <li>Local UAE Collections</li>
             <li>GCC-Wide Recovery</li>
@@ -254,8 +271,8 @@
     <div class="team-inner">
       <div class="team-header">
         <div class="team-header-text">
-          <div class="section-heading"><h2>Meet the Team</h2></div>
-          <p class="section-subtitle">Our dedicated team consists of experts across engineering and strategy, each committed to driving results and innovation.</p>
+          <div class="section-heading"><h2 data-i18n="team.title">Meet the Team</h2></div>
+          <p class="section-subtitle" data-i18n="team.subtitle">Our dedicated team consists of experts across engineering and strategy, each committed to driving results and innovation.</p>
         </div>
       </div>
       <div class="team-accordion">
@@ -264,10 +281,10 @@
             <img src="assets/sir_ian.png" alt="Ian Madrid">
           </div>
           <div class="team-panel-info">
-            <span class="team-badge">15+ Years Experience</span>
-            <span class="team-panel-role">CEO, S.P. Madrid</span>
-            <span class="team-panel-name">Ian Madrid</span>
-            <p class="team-panel-bio">Visionary leader driving S.P. Madrid's recovery excellence across the GCC with over 15 years of strategic and operational expertise.</p>
+            <span class="team-badge" data-i18n="team.members.ian.badge">15+ Years Experience</span>
+            <span class="team-panel-role" data-i18n="team.members.ian.role">CEO, S.P. Madrid</span>
+            <span class="team-panel-name" data-i18n="team.members.ian.name">Ian Madrid</span>
+            <p class="team-panel-bio" data-i18n="team.members.ian.bio">Visionary leader driving S.P. Madrid's recovery excellence across the GCC with over 15 years of strategic and operational expertise.</p>
           </div>
           <div class="team-panel-sliver">
             <span class="team-sliver-name">Ian</span>
@@ -278,10 +295,10 @@
             <img src="assets/anita.png" alt="Anita">
           </div>
           <div class="team-panel-info">
-            <span class="team-badge">16+ Years Experience</span>
-            <span class="team-panel-role">Business Unit Director</span>
-            <span class="team-panel-name">Anita</span>
-            <p class="team-panel-bio">Leads business development and client partnerships with deep expertise in financial recovery and stakeholder relations.</p>
+            <span class="team-badge" data-i18n="team.members.anita.badge">16+ Years Experience</span>
+            <span class="team-panel-role" data-i18n="team.members.anita.role">Business Unit Director</span>
+            <span class="team-panel-name" data-i18n="team.members.anita.name">Anita</span>
+            <p class="team-panel-bio" data-i18n="team.members.anita.bio">Leads business development and client partnerships with deep expertise in financial recovery and stakeholder relations.</p>
           </div>
           <div class="team-panel-sliver">
             <span class="team-sliver-name">Anita</span>
@@ -292,10 +309,10 @@
             <img src="assets/mubarak.png" alt="Mubarak">
           </div>
           <div class="team-panel-info">
-            <span class="team-badge">20+ Years Experience</span>
-            <span class="team-panel-role">Executive Director</span>
-            <span class="team-panel-name">Mubarak</span>
-            <p class="team-panel-bio">Oversees executive operations and strategic initiatives, ensuring seamless delivery across all recovery mandates.</p>
+            <span class="team-badge" data-i18n="team.members.mubarak.badge">20+ Years Experience</span>
+            <span class="team-panel-role" data-i18n="team.members.mubarak.role">Executive Director</span>
+            <span class="team-panel-name" data-i18n="team.members.mubarak.name">Mubarak</span>
+            <p class="team-panel-bio" data-i18n="team.members.mubarak.bio">Oversees executive operations and strategic initiatives, ensuring seamless delivery across all recovery mandates.</p>
           </div>
           <div class="team-panel-sliver">
             <span class="team-sliver-name">Mubarak</span>
@@ -306,10 +323,10 @@
             <img src="assets/ivy.png" alt="Ivy">
           </div>
           <div class="team-panel-info">
-            <span class="team-badge">15+ Years Experience</span>
-            <span class="team-panel-role">Operations Manager</span>
-            <span class="team-panel-name">Ivy</span>
-            <p class="team-panel-bio">Manages day-to-day operations and process optimization, ensuring efficiency and quality across all projects.</p>
+            <span class="team-badge" data-i18n="team.members.ivy.badge">15+ Years Experience</span>
+            <span class="team-panel-role" data-i18n="team.members.ivy.role">Operations Manager</span>
+            <span class="team-panel-name" data-i18n="team.members.ivy.name">Ivy</span>
+            <p class="team-panel-bio" data-i18n="team.members.ivy.bio">Manages day-to-day operations and process optimization, ensuring efficiency and quality across all projects.</p>
           </div>
           <div class="team-panel-sliver">
             <span class="team-sliver-name">Ivy</span>
@@ -325,29 +342,29 @@
   <section class="privacy-section">
     <div class="privacy-inner">
       <div class="section-heading">
-        <h2>Data Privacy &amp; Regulatory Compliance</h2>
+        <h2 data-i18n="privacy.title">Data Privacy &amp; Regulatory Compliance</h2>
       </div>
       <div class="privacy-grid">
         <div class="privacy-card">
           <div class="privacy-icon-ring">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          <h3>Data Protection</h3>
-          <p>Enterprise-grade encryption and data handling aligned with DIFC and ADGM standards.</p>
+          <h3 data-i18n="privacy.dataProtection.title">Data Protection</h3>
+          <p data-i18n="privacy.dataProtection.desc">Enterprise-grade encryption and data handling aligned with DIFC and ADGM standards.</p>
         </div>
         <div class="privacy-card">
           <div class="privacy-icon-ring">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
           </div>
-          <h3>Regulatory Adherence</h3>
-          <p>Full compliance with UAE Central Bank guidelines, PDPL, and regional regulatory frameworks.</p>
+          <h3 data-i18n="privacy.regulatory.title">Regulatory Adherence</h3>
+          <p data-i18n="privacy.regulatory.desc">Full compliance with UAE Central Bank guidelines, PDPL, and regional regulatory frameworks.</p>
         </div>
         <div class="privacy-card">
           <div class="privacy-icon-ring">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
           </div>
-          <h3>Audit Ready</h3>
-          <p>Comprehensive audit trails and documentation for all recovery activities and communications.</p>
+          <h3 data-i18n="privacy.audit.title">Audit Ready</h3>
+          <p data-i18n="privacy.audit.desc">Comprehensive audit trails and documentation for all recovery activities and communications.</p>
         </div>
       </div>
     </div>
@@ -356,16 +373,16 @@
   <!-- ==================== FOOTER ==================== -->
   <footer class="footer" id="contact">
     <div class="footer-cta">
-      <h2>Ready to elevate your collection strategy?</h2>
-      <p>Partner with SPM Dubai to optimize your receivables and protect your assets.</p>
+      <h2 data-i18n="footer.cta.title">Ready to elevate your collection strategy?</h2>
+      <p data-i18n="footer.cta.subtitle">Partner with SPM Dubai to optimize your receivables and protect your assets.</p>
       <form class="cta-email-form" onsubmit="return ctaFormSubmit(this)">
         <div class="cta-form-stack">
           <div class="cta-form-row-2">
-            <input type="text" name="name" placeholder="Name" required class="cta-input" />
-            <input type="email" name="email" placeholder="Email" required class="cta-input" />
+            <input type="text" name="name" placeholder="Name" required class="cta-input" data-i18n-placeholder="footer.form.name" />
+            <input type="email" name="email" placeholder="Email" required class="cta-input" data-i18n-placeholder="footer.form.email" />
           </div>
-          <textarea name="message" placeholder="Message" rows="4" class="cta-input cta-textarea"></textarea>
-          <button type="submit" class="cta-btn cta-btn-full">Get in Touch &rarr;</button>
+          <textarea name="message" placeholder="Message" rows="4" class="cta-input cta-textarea" data-i18n-placeholder="footer.form.message"></textarea>
+          <button type="submit" class="cta-btn cta-btn-full" data-i18n="footer.form.submit">Get in Touch →</button>
         </div>
         <p class="cta-form-note">Or email us directly at <a href="mailto:dubai@spmadrid.ae">dubai@spmadrid.ae</a></p>
       </form>
@@ -374,34 +391,34 @@
       <div class="footer-top">
         <div class="footer-brand">
           <img src="assets/logo.png" alt="SPM - S.P. Madrid" class="footer-logo-img">
-          <p>Premier debt recovery and legal services across the GCC and MENA region.</p>
+          <p data-i18n="footer.brand">Premier debt recovery and legal services across the GCC and MENA region.</p>
           <div class="footer-vision-mission">
             <div class="footer-vm-block">
-              <h4>Vision</h4>
-              <p>To be the Nationwide leader in banking collections, setting the standard for excellence, security, and scalability in the global BPO industry.</p>
+              <h4 data-i18n="footer.vision">Vision</h4>
+              <p data-i18n="footer.visionText">To be the Nationwide leader in banking collections, setting the standard for excellence, security, and scalability in the global BPO industry.</p>
             </div>
             <div class="footer-vm-block">
-              <h4>Mission</h4>
-              <p>The company's mission is to Find, Train, and Change the lives of people.</p>
-              <p class="footer-vm-detail">This focuses on identifying talent, providing rigorous training in collection skills, and offering long-term career stability to transform the financial and professional lives of their employees.</p>
+              <h4 data-i18n="footer.mission">Mission</h4>
+              <p data-i18n="footer.missionText">The company's mission is to Find, Train, and Change the lives of people.</p>
+              <p class="footer-vm-detail" data-i18n="footer.missionDetail">This focuses on identifying talent, providing rigorous training in collection skills, and offering long-term career stability to transform the financial and professional lives of their employees.</p>
             </div>
           </div>
         </div>
         <div class="footer-col">
-          <h4>Services</h4>
-          <a href="#services">Secured Recovery</a>
-          <a href="#services">Unsecured Recovery</a>
-          <a href="#services">Legal Services</a>
-          <a href="#services">Audit Recovery</a>
+          <h4 data-i18n="footer.services">Services</h4>
+          <a href="#services" data-i18n="footer.securedRecovery">Secured Recovery</a>
+          <a href="#services" data-i18n="footer.unsecuredRecovery">Unsecured Recovery</a>
+          <a href="#services" data-i18n="footer.legalServices">Legal Services</a>
+          <a href="#services" data-i18n="footer.auditRecovery">Audit Recovery</a>
         </div>
         <div class="footer-col" id="careers">
-          <h4>Company</h4>
-          <a href="#about">About Us</a>
-          <a href="#careers">Careers</a>
-          <a href="#contact">Contact</a>
+          <h4 data-i18n="footer.company">Company</h4>
+          <a href="#about" data-i18n="footer.aboutUs">About Us</a>
+          <a href="#careers" data-i18n="footer.careers">Careers</a>
+          <a href="#contact" data-i18n="footer.contactLink">Contact</a>
         </div>
         <div class="footer-col footer-contact">
-          <h4>Dubai Hub</h4>
+          <h4 data-i18n="footer.dubaiHub">Dubai Hub</h4>
           <p>dubai@spmadrid.ae</p>
           <p>Dubai, United Arab Emirates</p>
         </div>
@@ -409,9 +426,9 @@
       <div class="footer-bottom">
         <p>&copy; 2026 S.P. Madrid Dubai. All rights reserved. Licensed in UAE.</p>
         <div class="footer-bottom-links">
-          <a href="#">Privacy Policy</a>
+          <a href="#" data-i18n="footer.privacyPolicy">Privacy Policy</a>
           <span style="color: rgba(255,255,255,0.3);">&bull;</span>
-          <a href="#">Terms of Service</a>
+          <a href="#" data-i18n="footer.terms">Terms of Service</a>
         </div>
       </div>
     </div>
