@@ -23,7 +23,19 @@
       "subtitle": "Our regional footprint and multilingual capabilities ensure every account is reached, every debtor is engaged, and every recovery is maximized.",
       "globalAgents": "Global Agents",
       "dubai": "Dubai, UAE",
-      "philippines": "Philippines"
+      "philippines": "Philippines",
+      "dubaiItems": {
+        "primary": "Primary Hub",
+        "meeting": "Meeting Zones",
+        "ops": "Ops Center",
+        "reception": "Reception"
+      },
+      "phItems": {
+        "awards": "Excellence Awards",
+        "salcedo": "Salcedo Village Hub",
+        "ops": "Ops Floor",
+        "workspaces": "Workspaces"
+      }
     },
     "features": {
       "title": "Built for financial institutions",
@@ -31,25 +43,42 @@
       "secured": {
         "title": "Secured Products",
         "desc": "Specialized recovery for asset-backed lending across the GCC region.",
-        "items": ["Housing Finance", "Auto Finance", "Asset-Backed Loans"],
+        "items": [
+          "Housing Finance",
+          "Auto Finance",
+          "Asset-Backed Loans"
+        ],
         "link": "Learn More →"
       },
       "unsecured": {
         "title": "Unsecured Products",
         "desc": "Expert recovery services for credit cards, personal loans, and SME financing.",
-        "items": ["Credit Cards", "SME Loans", "Personal Loans", "Buy Now Pay Later"],
+        "items": [
+          "Credit Cards",
+          "SME Loans",
+          "Personal Loans",
+          "Buy Now Pay Later"
+        ],
         "link": "Learn More →"
       },
       "audit": {
         "title": "Audit Recovery",
         "desc": "Advanced portfolio analysis and write-off recovery across all asset classes.",
-        "items": ["Portfolio Analysis", "Write-off Recovery", "Skip Tracing"],
+        "items": [
+          "Portfolio Analysis",
+          "Write-off Recovery",
+          "Skip Tracing"
+        ],
         "link": "Learn More →"
       },
       "international": {
         "title": "Local & International Accounts",
         "desc": "Comprehensive account management extending across domestic borders and overseas jurisdictions.",
-        "items": ["Local UAE Collections", "GCC-Wide Recovery", "International Enforcement"],
+        "items": [
+          "Local UAE Collections",
+          "GCC-Wide Recovery",
+          "International Enforcement"
+        ],
         "link": "Learn More →"
       }
     },
@@ -131,270 +160,6 @@
       "terms": "Terms of Service"
     }
   },
-  "fil": {
-    "dir": "ltr",
-    "nav": {
-      "about": "Tungkol",
-      "services": "Mga Serbisyo",
-      "hq": "S.P. Madrid HQ",
-      "contact": "Makipag-ugnayan",
-      "getStarted": "Magsimula"
-    },
-    "hero": {
-      "title": "Solusyon sa Pagsingil ng Utang para sa GCC",
-      "subtitle": "Ginawa para sa rehiyon. Inihahatid na may lokal na kadalubhasaan, kakayahang multilingual, at napatunayang pagganap sa pagsingil.",
-      "cta": "Makipag-ugnayan"
-    },
-    "trust": {
-      "label": "Mga Pinagkakatiwalaang Kasosyo",
-      "subtext": "#1 Pinagkakatiwalaang Kasosyo para sa Pinakamalaking Institusyong Pinansyal sa GCC"
-    },
-    "numbers": {
-      "label": "Sa Mga Numero",
-      "heading": "Naghahatid ng resulta sa buong GCC",
-      "subtitle": "Tinitiyak ng aming regional na saklaw at multilingual na kakayahan na maabot ang bawat account, makipag-ugnayan sa bawat may utang, at i-maximize ang bawat pagsingil.",
-      "globalAgents": "Mga Global na Ahente",
-      "dubai": "Dubai, UAE",
-      "philippines": "Pilipinas"
-    },
-    "features": {
-      "title": "Ginawa para sa mga institusyong pinansyal",
-      "subtitle": "Komprehensibong solusyon sa pagsingil para sa secured at unsecured na portfolio",
-      "secured": {
-        "title": "Mga Secured na Produkto",
-        "desc": "Espesyalisadong pagsingil para sa asset-backed na pagpapautang sa rehiyon ng GCC.",
-        "items": ["Housing Finance", "Auto Finance", "Asset-Backed Loans"],
-        "link": "Matuto Pa →"
-      },
-      "unsecured": {
-        "title": "Mga Unsecured na Produkto",
-        "desc": "Ekspertong serbisyo sa pagsingil para sa credit cards, personal loans, at SME financing.",
-        "items": ["Credit Cards", "SME Loans", "Personal Loans", "Buy Now Pay Later"],
-        "link": "Matuto Pa →"
-      },
-      "audit": {
-        "title": "Audit Recovery",
-        "desc": "Advanced na pagsusuri ng portfolio at write-off recovery sa lahat ng klase ng asset.",
-        "items": ["Pagsusuri ng Portfolio", "Write-off Recovery", "Skip Tracing"],
-        "link": "Matuto Pa →"
-      },
-      "international": {
-        "title": "Lokal at Internasyonal na Account",
-        "desc": "Komprehensibong pamamahala ng account na umabot sa lokal at internasyonal na hurisdiksyon.",
-        "items": ["Lokal na Pagsingil sa UAE", "GCC-Wide Recovery", "Internasyonal na Pagpapatupad"],
-        "link": "Matuto Pa →"
-      }
-    },
-    "team": {
-      "title": "Kilalanin ang Team",
-      "subtitle": "Ang aming dedikadong team ay binubuo ng mga eksperto sa engineering at estratehiya, bawat isa ay nakatuon sa paghahatid ng resulta at inobasyon.",
-      "members": {
-        "ian": {
-          "badge": "15+ Taon ng Karanasan",
-          "role": "CEO, S.P. Madrid",
-          "name": "Ian Madrid",
-          "bio": "Isang visionary leader na nagpapatakbo ng kahusayan sa pagsingil ng S.P. Madrid sa buong GCC na may higit 15 taon ng estratehiko at operasyunal na kadalubhasaan."
-        },
-        "anita": {
-          "badge": "16+ Taon ng Karanasan",
-          "role": "Business Unit Director",
-          "name": "Anita",
-          "bio": "Namumuno sa business development at mga partnership sa kliyente na may malalim na kadalubhasaan sa financial recovery at stakeholder relations."
-        },
-        "mubarak": {
-          "badge": "20+ Taon ng Karanasan",
-          "role": "Executive Director",
-          "name": "Mubarak",
-          "bio": "Nangangasiwa ng mga executive operations at strategic initiatives, tinitiyak ang maayos na paghahatid sa lahat ng recovery mandate."
-        },
-        "ivy": {
-          "badge": "15+ Taon ng Karanasan",
-          "role": "Operations Manager",
-          "name": "Ivy",
-          "bio": "Namamahala sa pang-araw-araw na operasyon at pag-optimize ng proseso, tinitiyak ang kahusayan at kalidad sa lahat ng proyekto."
-        }
-      }
-    },
-    "privacy": {
-      "title": "Privacy ng Data at Pagsunod sa Regulasyon",
-      "dataProtection": {
-        "title": "Proteksyon ng Data",
-        "desc": "Enterprise-grade encryption at pamamahala ng data na naaayon sa mga pamantayan ng DIFC at ADGM."
-      },
-      "regulatory": {
-        "title": "Pagsunod sa Regulasyon",
-        "desc": "Buong pagsunod sa mga alituntunin ng UAE Central Bank, PDPL, at mga regional na balangkas ng regulasyon."
-      },
-      "audit": {
-        "title": "Handa sa Audit",
-        "desc": "Komprehensibong audit trails at dokumentasyon para sa lahat ng aktibidad sa pagsingil at komunikasyon."
-      }
-    },
-    "footer": {
-      "cta": {
-        "title": "Handa na bang itaas ang iyong estratehiya sa pagsingil?",
-        "subtitle": "Makipagtulungan sa SPM Dubai para i-optimize ang iyong mga receivable at protektahan ang iyong mga asset."
-      },
-      "form": {
-        "name": "Pangalan",
-        "email": "Email",
-        "message": "Mensahe",
-        "submit": "Makipag-ugnayan →",
-        "note": "O mag-email sa amin nang direkta sa"
-      },
-      "brand": "Nangungunang serbisyo sa pagsingil ng utang at legal na serbisyo sa buong GCC at MENA region.",
-      "vision": "Pananaw",
-      "visionText": "Maging pambansang lider sa banking collections, nagtatatag ng pamantayan para sa kahusayan, seguridad, at scalability sa pandaigdigang industriya ng BPO.",
-      "mission": "Misyon",
-      "missionText": "Ang misyon ng kumpanya ay Maghanap, Magsanay, at Baguhin ang buhay ng mga tao.",
-      "missionDetail": "Nakatuon ito sa pagtukoy ng talento, pagbibigay ng mahigpit na pagsasanay sa mga kasanayan sa pagsingil, at pag-aalok ng pangmatagalang katatagan sa karera upang baguhin ang pinansyal at propesyunal na buhay ng kanilang mga empleyado.",
-      "services": "Mga Serbisyo",
-      "securedRecovery": "Secured Recovery",
-      "unsecuredRecovery": "Unsecured Recovery",
-      "legalServices": "Mga Legal na Serbisyo",
-      "auditRecovery": "Audit Recovery",
-      "company": "Kumpanya",
-      "aboutUs": "Tungkol sa Amin",
-      "careers": "Mga Karera",
-      "contactLink": "Makipag-ugnayan",
-      "dubaiHub": "Dubai Hub",
-      "copyright": "© 2026 S.P. Madrid Dubai. Lahat ng karapatan ay nakalaan. Lisensyado sa UAE.",
-      "privacyPolicy": "Patakaran sa Privacy",
-      "terms": "Mga Tuntunin ng Serbisyo"
-    }
-  },
-  "hi": {
-    "dir": "ltr",
-    "nav": {
-      "about": "के बारे में",
-      "services": "सेवाएँ",
-      "hq": "S.P. Madrid मुख्यालय",
-      "contact": "संपर्क",
-      "getStarted": "शुरू करें"
-    },
-    "hero": {
-      "title": "GCC के लिए ऋण वसूली समाधान",
-      "subtitle": "क्षेत्र के लिए निर्मित। स्थानीय विशेषज्ञता, बहुभाषी क्षमता और सिद्ध वसूली प्रदर्शन के साथ वितरित।",
-      "cta": "संपर्क करें"
-    },
-    "trust": {
-      "label": "विश्वसनीय भागीदार",
-      "subtext": "GCC के सबसे बड़े वित्तीय संस्थानों के लिए #1 विश्वसनीय भागीदार"
-    },
-    "numbers": {
-      "label": "संख्याओं में",
-      "heading": "पूरे GCC में परिणाम प्रदान करना",
-      "subtitle": "हमारा क्षेत्रीय पदचिह्न और बहुभाषी क्षमताएँ सुनिश्चित करती हैं कि हर खाते तक पहुँचा जाए, हर देनदार से संपर्क किया जाए, और हर वसूली को अधिकतम किया जाए।",
-      "globalAgents": "वैश्विक एजेंट",
-      "dubai": "दुबई, यूएई",
-      "philippines": "फिलीपींस"
-    },
-    "features": {
-      "title": "वित्तीय संस्थानों के लिए निर्मित",
-      "subtitle": "सुरक्षित और असुरक्षित पोर्टफोलियो में व्यापक वसूली समाधान",
-      "secured": {
-        "title": "सुरक्षित उत्पाद",
-        "desc": "GCC क्षेत्र में एसेट-बैक्ड ऋण के लिए विशेष वसूली।",
-        "items": ["हाउसिंग फाइनेंस", "ऑटो फाइनेंस", "एसेट-बैक्ड लोन"],
-        "link": "और जानें →"
-      },
-      "unsecured": {
-        "title": "असुरक्षित उत्पाद",
-        "desc": "क्रेडिट कार्ड, व्यक्तिगत ऋण और SME वित्तपोषण के लिए विशेषज्ञ वसूली सेवाएँ।",
-        "items": ["क्रेडिट कार्ड", "SME ऋण", "व्यक्तिगत ऋण", "अभी खरीदें बाद में भुगतान करें"],
-        "link": "और जानें →"
-      },
-      "audit": {
-        "title": "ऑडिट रिकवरी",
-        "desc": "सभी एसेट वर्गों में उन्नत पोर्टफोलियो विश्लेषण और राइट-ऑफ रिकवरी।",
-        "items": ["पोर्टफोलियो विश्लेषण", "राइट-ऑफ रिकवरी", "स्किप ट्रेसिंग"],
-        "link": "और जानें →"
-      },
-      "international": {
-        "title": "स्थानीय और अंतर्राष्ट्रीय खाते",
-        "desc": "घरेलू सीमाओं और विदेशी न्यायालयों में व्यापक खाता प्रबंधन।",
-        "items": ["स्थानीय UAE संग्रह", "GCC-व्यापक वसूली", "अंतर्राष्ट्रीय प्रवर्तन"],
-        "link": "और जानें →"
-      }
-    },
-    "team": {
-      "title": "टीम से मिलें",
-      "subtitle": "हमारी समर्पित टीम इंजीनियरिंग और रणनीति के विशेषज्ञों से बनी है, प्रत्येक परिणाम और नवाचार को आगे बढ़ाने के लिए प्रतिबद्ध है।",
-      "members": {
-        "ian": {
-          "badge": "15+ वर्षों का अनुभव",
-          "role": "CEO, S.P. Madrid",
-          "name": "इयान मैड्रिड",
-          "bio": "GCC में S.P. Madrid की वसूली उत्कृष्टता को आगे बढ़ाने वाले दूरदर्शी नेता, 15+ वर्षों की रणनीतिक और परिचालन विशेषज्ञता के साथ।"
-        },
-        "anita": {
-          "badge": "16+ वर्षों का अनुभव",
-          "role": "बिजनेस यूनिट निदेशक",
-          "name": "अनीता",
-          "bio": "वित्तीय वसूली और हितधारक संबंधों में गहरी विशेषज्ञता के साथ व्यापार विकास और ग्राहक साझेदारी का नेतृत्व करती हैं।"
-        },
-        "mubarak": {
-          "badge": "20+ वर्षों का अनुभव",
-          "role": "कार्यकारी निदेशक",
-          "name": "मुबारक",
-          "bio": "कार्यकारी संचालन और रणनीतिक पहलों की देखरेख करते हैं, सभी वसूली आदेशों में निर्बाध वितरण सुनिश्चित करते हैं।"
-        },
-        "ivy": {
-          "badge": "15+ वर्षों का अनुभव",
-          "role": "संचालन प्रबंधक",
-          "name": "आइवी",
-          "bio": "दिन-प्रतिदिन के संचालन और प्रक्रिया अनुकूलन का प्रबंधन करती हैं, सभी परियोजनाओं में दक्षता और गुणवत्ता सुनिश्चित करती हैं।"
-        }
-      }
-    },
-    "privacy": {
-      "title": "डेटा गोपनीयता और नियामक अनुपालन",
-      "dataProtection": {
-        "title": "डेटा सुरक्षा",
-        "desc": "DIFC और ADGM मानकों के अनुरूप एंटरप्राइज़-ग्रेड एन्क्रिप्शन और डेटा हैंडलिंग।"
-      },
-      "regulatory": {
-        "title": "नियामक पालन",
-        "desc": "UAE सेंट्रल बैंक दिशानिर्देशों, PDPL और क्षेत्रीय नियामक ढाँचों का पूर्ण अनुपालन।"
-      },
-      "audit": {
-        "title": "ऑडिट के लिए तैयार",
-        "desc": "सभी वसूली गतिविधियों और संचार के लिए व्यापक ऑडिट ट्रेल और दस्तावेज़ीकरण।"
-      }
-    },
-    "footer": {
-      "cta": {
-        "title": "अपनी संग्रह रणनीति को उन्नत करने के लिए तैयार हैं?",
-        "subtitle": "अपनी प्राप्तियों को अनुकूलित करने और अपनी संपत्तियों की रक्षा करने के लिए SPM दुबई के साथ भागीदारी करें।"
-      },
-      "form": {
-        "name": "नाम",
-        "email": "ईमेल",
-        "message": "संदेश",
-        "submit": "संपर्क करें →",
-        "note": "या हमें सीधे ईमेल करें"
-      },
-      "brand": "GCC और MENA क्षेत्र में प्रमुख ऋण वसूली और कानूनी सेवाएँ।",
-      "vision": "दृष्टि",
-      "visionText": "बैंकिंग संग्रह में राष्ट्रव्यापी नेता बनना, वैश्विक BPO उद्योग में उत्कृष्टता, सुरक्षा और स्केलेबिलिटी का मानक स्थापित करना।",
-      "mission": "मिशन",
-      "missionText": "कंपनी का मिशन है लोगों को खोजना, प्रशिक्षित करना और उनके जीवन को बदलना।",
-      "missionDetail": "यह प्रतिभा की पहचान, संग्रह कौशल में कठोर प्रशिक्षण प्रदान करने और अपने कर्मचारियों के वित्तीय और पेशेवर जीवन को बदलने के लिए दीर्घकालिक करियर स्थिरता प्रदान करने पर केंद्रित है।",
-      "services": "सेवाएँ",
-      "securedRecovery": "सुरक्षित वसूली",
-      "unsecuredRecovery": "असुरक्षित वसूली",
-      "legalServices": "कानूनी सेवाएँ",
-      "auditRecovery": "ऑडिट रिकवरी",
-      "company": "कंपनी",
-      "aboutUs": "हमारे बारे में",
-      "careers": "करियर",
-      "contactLink": "संपर्क",
-      "dubaiHub": "दुबई हब",
-      "copyright": "© 2026 S.P. Madrid दुबई। सभी अधिकार सुरक्षित। UAE में लाइसेंस प्राप्त।",
-      "privacyPolicy": "गोपनीयता नीति",
-      "terms": "सेवा की शर्तें"
-    }
-  },
   "ar": {
     "dir": "rtl",
     "nav": {
@@ -419,7 +184,19 @@
       "subtitle": "تضمن بصمتنا الإقليمية وقدراتنا المتعددة اللغات الوصول إلى كل حساب والتفاعل مع كل مدين وتعظيم كل عملية تحصيل.",
       "globalAgents": "وكلاء عالميون",
       "dubai": "دبي، الإمارات",
-      "philippines": "الفلبين"
+      "philippines": "الفلبين",
+      "dubaiItems": {
+        "primary": "المركز الرئيسي",
+        "meeting": "مناطق الاجتماعات",
+        "ops": "مركز العمليات",
+        "reception": "الاستقبال"
+      },
+      "phItems": {
+        "awards": "جوائز التميز",
+        "salcedo": "مركز سالسيدو فيليج",
+        "ops": "طابق العمليات",
+        "workspaces": "مساحات العمل"
+      }
     },
     "features": {
       "title": "مصممة للمؤسسات المالية",
@@ -427,25 +204,42 @@
       "secured": {
         "title": "المنتجات المضمونة",
         "desc": "تحصيل متخصص للإقراض المدعوم بالأصول في منطقة دول مجلس التعاون الخليجي.",
-        "items": ["تمويل الإسكان", "تمويل السيارات", "القروض المدعومة بالأصول"],
+        "items": [
+          "تمويل الإسكان",
+          "تمويل السيارات",
+          "القروض المدعومة بالأصول"
+        ],
         "link": "← اعرف المزيد"
       },
       "unsecured": {
         "title": "المنتجات غير المضمونة",
         "desc": "خدمات تحصيل متخصصة لبطاقات الائتمان والقروض الشخصية وتمويل الشركات الصغيرة.",
-        "items": ["بطاقات الائتمان", "قروض الشركات الصغيرة", "القروض الشخصية", "اشترِ الآن وادفع لاحقاً"],
+        "items": [
+          "بطاقات الائتمان",
+          "قروض الشركات الصغيرة",
+          "القروض الشخصية",
+          "اشترِ الآن وادفع لاحقاً"
+        ],
         "link": "← اعرف المزيد"
       },
       "audit": {
         "title": "تحصيل المراجعة",
         "desc": "تحليل متقدم للمحافظ واسترداد الشطب عبر جميع فئات الأصول.",
-        "items": ["تحليل المحافظ", "استرداد الشطب", "تتبع التهرب"],
+        "items": [
+          "تحليل المحافظ",
+          "استرداد الشطب",
+          "تتبع التهرب"
+        ],
         "link": "← اعرف المزيد"
       },
       "international": {
         "title": "الحسابات المحلية والدولية",
         "desc": "إدارة حسابات شاملة تمتد عبر الحدود المحلية والولايات القضائية الخارجية.",
-        "items": ["التحصيل المحلي في الإمارات", "التحصيل في دول الخليج", "الإنفاذ الدولي"],
+        "items": [
+          "التحصيل المحلي في الإمارات",
+          "التحصيل في دول الخليج",
+          "الإنفاذ الدولي"
+        ],
         "link": "← اعرف المزيد"
       }
     },
