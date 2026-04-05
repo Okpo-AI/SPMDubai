@@ -871,27 +871,25 @@ img {
   transform: translateY(-50%) scale(1.1);
 }
 
-.stack-progress-dots {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin: 0px auto 20px;
+.stack-progress-bar {
+  position: relative;
+  width: 300px;
+  height: 4px;
+  background: rgba(0, 31, 63, 0.1);
+  border-radius: 2px;
+  margin: 30px auto 10px;
+  overflow: hidden;
 }
 
-.stack-dot {
-  width: 8px;
-  height: 8px;
-  background: rgba(0, 31, 63, 0.2);
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 1, 0.35, 1);
-}
-
-.stack-dot.active {
-  width: 24px;
-  border-radius: 4px;
-  background: var(--gold);
+.stack-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: var(--navy);
+  border-radius: 2px;
+  transition: width 0.4s ease;
 }
 
 /* Mobile Stack Adjustments */
@@ -910,13 +908,12 @@ img {
   .stack-controls { gap: 40px; }
   .stack-progress-container { width: 180px; }
 }
+/* Office Address Row Stylings */
 .office-address-row {
   display: flex;
   justify-content: center;
   min-height: 48px;
-  margin-top: 15px;
-  position: relative;
-  z-index: 50;
+  margin-top: 30px;
 }
 
 .office-address-item {

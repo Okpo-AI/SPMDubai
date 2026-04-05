@@ -248,32 +248,14 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    // Update progress dots
-    var dotsContainer = document.getElementById('stack-progress-dots');
-    if (dotsContainer) {
-      if (dotsContainer.childElementCount !== total) {
-        dotsContainer.innerHTML = '';
-        for (var i = 0; i < total; i++) {
-          var dot = document.createElement('div');
-          dot.className = 'stack-dot';
-          dot.setAttribute('data-index', i);
-          dot.addEventListener('click', function(e) {
-            currentStackIndex = parseInt(e.target.getAttribute('data-index'));
-            updateStackClasses();
-            if (typeof stopStackAuto === 'function') { stopStackAuto(); startStackAuto(); }
-          });
-          dotsContainer.appendChild(dot);
-        }
+    // Update progress bar
+    var wrapper = container.closest('.numbers-stack-wrapper');
+    if (wrapper) {
+      var progressFill = wrapper.querySelector('.stack-progress-fill');
+      if (progressFill) {
+        var progressPercent = ((currentStackIndex + 1) / total) * 100;
+        progressFill.style.width = progressPercent + '%';
       }
-      
-      var dots = dotsContainer.querySelectorAll('.stack-dot');
-      dots.forEach(function(dot, i) {
-        if (i === currentStackIndex) {
-          dot.classList.add('active');
-        } else {
-          dot.classList.remove('active');
-        }
-      });
     }
   }
 
